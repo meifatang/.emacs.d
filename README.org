@@ -248,7 +248,7 @@ Emacs's package managment is ugly. But I do not care.
 
 ** ELPA
 #+begin_src emacs-lisp
-  (setq package-list '(google-this exec-path-from-shell rime
+  (setq package-list '(google-this exec-path-from-shell rime meow
                                    rainbow-delimiters sudo-edit which-key ivy counsel amx ivy-rich helpful
                                    csv-mode nginx-mode jenkinsfile-mode dockerfile-mode
                                    undo-tree smart-hungry-delete
