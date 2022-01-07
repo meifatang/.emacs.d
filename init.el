@@ -47,7 +47,7 @@
 
 (setq gc-cons-threshold 1000000000) ;; 100M
 
-(setq package-list '(google-this exec-path-from-shell rime meow
+(setq package-list '(google-this exec-path-from-shell rime meow pinentry
                                  rainbow-delimiters sudo-edit which-key ivy counsel amx ivy-rich helpful
                                  csv-mode nginx-mode jenkinsfile-mode dockerfile-mode
                                  undo-tree smart-hungry-delete
@@ -56,7 +56,7 @@
                                  magit forge
                                  toml-mode yaml-mode ansible csv-mode nginx-mode jenkinsfile-mode
                                  terraform-mode dockerfile-mode docker-compose-mode
-                                 go-mode rust-mode julia-mode slime haskell-mode erlang elixir-mode
+                                 go-mode rust-mode julia-mode slime haskell-mode erlang elixir-mode applescript-mode
                                  yasnippet yasnippet-snippets yatemplate
                                  lsp-mode company flycheck
                                  ess
@@ -378,6 +378,9 @@
 
 (org-roam-db-autosync-mode)
 ;;(add-hook 'org-roam-find-file-hook 'org-roam-buffer)
+
+(setq epa-pinentry-mode 'loopback)
+(pinentry-start)
 
 (require 'hledger-mode)
 (add-to-list 'auto-mode-alist '("\\.journal\\'" . hledger-mode))
