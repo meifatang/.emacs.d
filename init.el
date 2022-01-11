@@ -193,6 +193,7 @@
  'org-babel-load-languages
  '((python . t)
    (C . t)
+   (awk . t)
    (shell . t)
    (go . t)
    (lisp . t)

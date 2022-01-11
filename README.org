@@ -671,6 +671,7 @@ https://github.com/alf/ob-restclient.el
    'org-babel-load-languages
    '((python . t)
      (C . t)
+     (awk . t)
      (shell . t)
      (go . t)
      (lisp . t)
