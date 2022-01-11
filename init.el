@@ -186,7 +186,9 @@
 (setq org-hide-emphasis-markers t)
 
 (setq org-babel-python-command "python3")
-;;(setq org-confirm-babel-evaluate nil)
+(setq org-babel-clojure-backend 'cider)
+
+(setq org-confirm-babel-evaluate nil)
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((python . t)
@@ -206,6 +208,7 @@
    (octave . t)
    (java . t)
    (haskell . t)
+   (fortran . t)
    (ruby . t)
    (rust . t)))
 

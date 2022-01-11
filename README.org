@@ -624,7 +624,7 @@ https://github.com/kaiwk/leetcode.el
   (setq org-hide-emphasis-markers t)
 #+end_src
 
-** Ob-*
+** Ob-x
 *** ob-async
 https://github.com/astahlman/ob-async
 
@@ -664,7 +664,9 @@ https://github.com/alf/ob-restclient.el
 ** org-babel
 #+begin_src emacs-lisp
   (setq org-babel-python-command "python3")
-  ;;(setq org-confirm-babel-evaluate nil)
+  (setq org-babel-clojure-backend 'cider)
+
+  (setq org-confirm-babel-evaluate nil)
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((python . t)
@@ -684,6 +686,7 @@ https://github.com/alf/ob-restclient.el
      (octave . t)
      (java . t)
      (haskell . t)
+     (fortran . t)
      (ruby . t)
      (rust . t)))
 #+end_src
