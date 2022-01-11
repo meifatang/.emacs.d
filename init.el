@@ -304,6 +304,7 @@
 
 (setq default-input-method "rime")
 (setq rime-librime-root "~/.emacs.d/librime/dist")
+(setq rime-user-data-dir "~/Library/Rime")
 
 ;; (setq telega-chat-show-avatars nil)
 ;; (setq telega-root-show-avatars nil)

@@ -859,6 +859,7 @@ https://github.com/DogLooksGood/emacs-rime
 #+begin_src emacs-lisp
   (setq default-input-method "rime")
   (setq rime-librime-root "~/.emacs.d/librime/dist")
+  (setq rime-user-data-dir "~/Library/Rime")
 #+end_src
 
 ** TODO telega
