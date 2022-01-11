@@ -618,17 +618,10 @@ https://github.com/kaiwk/leetcode.el
 #+end_src
 
 * Org
-** org
+** Org
 #+begin_src emacs-lisp
   (setq org-startup-indented t)
   (setq org-hide-emphasis-markers t)
-#+end_src
-
-** valign-mode                                                     :ARCHIVE:
-https://github.com/casouri/valign
-
-#+begin_src emacs-lisp :tangle no
-  (add-hook 'org-mode-hook #'valign-mode)
 #+end_src
 
 ** Ob-*
