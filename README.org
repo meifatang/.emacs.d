@@ -50,6 +50,7 @@ To set enviroment
   (setenv "http_proxy" "http://127.0.0.1:7890")
   (setenv "https_proxy" "http://127.0.0.1:7890")
   (setenv "all_proxy" "socks5://127.0.0.1:7890")
+  ;; (setenv "PATH" (concat "~/go/bin:" "~/bin:" "/usr/local/opt/ruby/bin:" "/usr/local/texlive/2021/bin/universal-darwin:" (getenv "PATH")))
 #+end_src
 
 ** Add folder to load path
