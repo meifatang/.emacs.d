@@ -209,6 +209,7 @@
    (R . t)
    (octave . t)
    (java . t)
+   (lua . t)
    (haskell . t)
    (fortran . t)
    (ruby . t)

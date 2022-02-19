@@ -687,6 +687,7 @@ https://github.com/alf/ob-restclient.el
      (R . t)
      (octave . t)
      (java . t)
+     (lua . t)
      (haskell . t)
      (fortran . t)
      (ruby . t)
