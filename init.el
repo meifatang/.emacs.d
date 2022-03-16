@@ -48,6 +48,9 @@
 
 (setq gc-cons-threshold 1000000000) ;; 100M
 
+(setq dired-omit-files "\\.DS_Store")
+(add-hook 'dired-mode-hook (lambda () (dired-omit-mode)))
+
 (setq package-list '(google-this exec-path-from-shell rime pinentry auctex
                                  rainbow-delimiters sudo-edit which-key ivy counsel amx ivy-rich helpful
                                  csv-mode nginx-mode jenkinsfile-mode dockerfile-mode
