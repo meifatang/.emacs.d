@@ -227,47 +227,58 @@
 (setq org-log-done 'time)
 (setq org-log-done 'note)
 
-;;(setq org-default-notes-file (concat org-directory "/notes.org"))
 (setq org-capture-templates
       '(("g" "Gettting Things Done" entry (file+headline "~/org/self/gtd.org" "Tasks")
-         "* TODO %?\n  %i\n  %a")
+         "* TODO %?\n  %i\n  %a\n")
 
         ;; Inbox, Journal
         ("i" "Inbox" entry (file+olp+datetree "~/org/self/inbox.org")
-         "* %?\nEntered on %U\n  %i\n  %a")
+         "* %?\nEntered on %U\n  %i  %a")
         ("j" "Journal" entry (file+olp+datetree "~/org/self/journal.org")
-         "* %?\nEntered on %U\n  %i\n  %a")
+         "* %?\nEntered on %U\n  %i  %a")
 
-        ;; Health
-        ("d" "Diet" entry (file+olp+datetree "~/org/self/diet.org")
-         "* %?\nEntered on $U\n  %i\n  %a")
-        ("h" "Health" entry (file+olp+datetree "~/org/self/health.org")
-         "* %?\nEntered on $U\n  %i\n  %a")
-        ("f" "Fitness" entry (file+olp+datetree "~/org/self/fitness.org")
-         "* %?\nEntered on $U\n  %i\n  %a")
+        ;; Health, Fitness
+        ("h" "Health")
+        ("hd" "Diet" entry (file+olp+datetree "~/org/self/health.org" "Diet")
+         "* %?\nEntered on $U\n  %i  %a")
+        ("hw" "Weight" entry (file+olp+datetree "~/org/self/health.org" "Weight")
+         "* %?\nEntered on $U\n  %i  %a")
 
-        ;; Grow
-        ("r" "Read" entry (file+olp+datetree "~/org/self/read.org")
-         "* %?\nEntered on $U\n  %i\n  %a")
-        ("l" "Learn" entry (file+olp+datetree "~/org/self/learn.org")
-         "* %?\nEntered on $U\n  %i\n  %a")
+        ("f" "Fitness")
+        ("fr" "Running" entry (file+olp+datetree "~/org/self/fitness.org" "Running")
+         "* %?\nEntered on $U\n  %i  %a")
+
+        ;; Reading, Learning
+        ("r" "Reading List" entry (file+olp+datetree "~/org/self/reading.org")
+         "* %?\nEntered on $U\n  %i  %a")
+        ("l" "Learn" entry (file+olp+datetree "~/org/self/learning.org")
+         "* %?\nEntered on $U\n  %i  %a")
 
         ;; Finance
-        ("F" "Finance" plain
+        ("F" "Finance Record" plain
          (file "~/org/self/Finance/finance.journal")
          "%(org-read-date) %^{Description}
     %^{Category|Expenses:Food:Groceries|Expenses:Food:Dining|Expenses:Transport|Expenses:Home|Expenses:Entertainment|Revenues:Salary|Revenues:Misc}    %^{Amount}
     %^{Asset/Liability Account|Assets:Bank:Checking|Assets:Cash|Liabilities:Bank:Credit Card}"
          :empty-lines 1)
 
+        ;; Entertainments
         ("e" "Entertainment")
         ("em" "Movie" entry (file+olp+datetree "~/org/self/entertainments.org" "Movie")
-         "* %?\nEntered on $U\n  %i\n  %a")
+         "* %?\nEntered on $U\n  %i  %a")
         ("et" "TV Show" entry (file+olp+datetree "~/org/self/entertainments.org" "TV")
-         "* %?\nEntered on $U\n  %i\n  %a")
+         "* %?\nEntered on $U\n  %i  %a")
+
+        ;; Job
+        ("J" "Job" table-line (file+headline "~/org/self/job.org" "Logging")
+         "| %U | %^{Company} | %^{Type} | %^{Status} | %^{Note} |")
         ))
 
-(setq org-agenda-files '("~/org/33cn/gtd.org" "~/org/gtd.org"))
+(global-set-key (kbd "C-c c") #'org-capture)
+
+(setq org-agenda-files '("~/org/self/gtd.org"))
+
+(global-set-key (kbd "C-c a") #'org-agenda)
 
 ;;(require 'org-superstar)
 ;;(add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
