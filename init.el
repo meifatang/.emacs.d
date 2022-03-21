@@ -8,7 +8,7 @@
 (setenv "http_proxy" "http://127.0.0.1:7890")
 (setenv "https_proxy" "http://127.0.0.1:7890")
 (setenv "all_proxy" "socks5://127.0.0.1:7890")
-;; (setenv "PATH" (concat "~/go/bin:" "~/bin:" "/usr/local/opt/ruby/bin:" "/usr/local/texlive/2021/bin/universal-darwin:" (getenv "PATH")))
+;; (setenv "PATH" (concat "~/go/bin:" "~/bin:" "/usr/local/opt/ruby/bin:" "/usr/local/texlive/2021/bin/universal-darwin:" (getenv "PATH"))) ;; do not need
 
 (defun add-folder-to-load-path (folder)
   "Add folder and subdirs to the `load-path'."
@@ -206,6 +206,7 @@
    (sql . t)
    (js . t)
    ;;(ts . t)
+   (ditaa . t)
    (dot . t)
    (elixir . t)
    (julia . t)
@@ -228,49 +229,42 @@
 
 ;;(setq org-default-notes-file (concat org-directory "/notes.org"))
 (setq org-capture-templates
-      '(("g" "Gettting Things Done" entry (file+headline "~/org/Self/gtd.org" "Tasks")
+      '(("g" "Gettting Things Done" entry (file+headline "~/org/self/gtd.org" "Tasks")
          "* TODO %?\n  %i\n  %a")
 
         ;; Inbox, Journal
-        ("i" "Inbox" entry (file+olp+datetree "~/org/Self/inbox.org")
+        ("i" "Inbox" entry (file+olp+datetree "~/org/self/inbox.org")
          "* %?\nEntered on %U\n  %i\n  %a")
-        ("j" "Journal" entry (file+olp+datetree "~/org/Self/journal.org")
+        ("j" "Journal" entry (file+olp+datetree "~/org/self/journal.org")
          "* %?\nEntered on %U\n  %i\n  %a")
 
         ;; Health
-        ("d" "Diet" entry (file+olp+datetree "~/org/Self/diet.org")
+        ("d" "Diet" entry (file+olp+datetree "~/org/self/diet.org")
          "* %?\nEntered on $U\n  %i\n  %a")
-        ("h" "Health" entry (file+olp+datetree "~/org/Self/health.org")
+        ("h" "Health" entry (file+olp+datetree "~/org/self/health.org")
          "* %?\nEntered on $U\n  %i\n  %a")
-        ("f" "Fitness" entry (file+olp+datetree "~/org/Self/fitness.org")
+        ("f" "Fitness" entry (file+olp+datetree "~/org/self/fitness.org")
          "* %?\nEntered on $U\n  %i\n  %a")
 
         ;; Grow
-        ("r" "Read" entry (file+olp+datetree "~/org/Self/read.org")
+        ("r" "Read" entry (file+olp+datetree "~/org/self/read.org")
          "* %?\nEntered on $U\n  %i\n  %a")
-        ("l" "Learn" entry (file+olp+datetree "~/org/Self/learn.org")
+        ("l" "Learn" entry (file+olp+datetree "~/org/self/learn.org")
          "* %?\nEntered on $U\n  %i\n  %a")
 
         ;; Finance
         ("F" "Finance" plain
-         (file "~/org/Self/Finance/finance.journal")
+         (file "~/org/self/Finance/finance.journal")
          "%(org-read-date) %^{Description}
     %^{Category|Expenses:Food:Groceries|Expenses:Food:Dining|Expenses:Transport|Expenses:Home|Expenses:Entertainment|Revenues:Salary|Revenues:Misc}    %^{Amount}
     %^{Asset/Liability Account|Assets:Bank:Checking|Assets:Cash|Liabilities:Bank:Credit Card}"
          :empty-lines 1)
 
         ("e" "Entertainment")
-        ("em" "Movie" entry (file+olp+datetree "~/org/Self/entertainments.org" "Movie")
+        ("em" "Movie" entry (file+olp+datetree "~/org/self/entertainments.org" "Movie")
          "* %?\nEntered on $U\n  %i\n  %a")
-        ("et" "TV Show" entry (file+olp+datetree "~/org/Self/entertainments.org" "TV")
+        ("et" "TV Show" entry (file+olp+datetree "~/org/self/entertainments.org" "TV")
          "* %?\nEntered on $U\n  %i\n  %a")
-
-        ("3" "fzm")
-        ("3t" "fzm's Todo" entry (file+headline "~/org/fzm/fzm-gtd.org" "Tasks")
-         "* TODO %?\n  %i\n  %a")
-        ("3l" "fzm's Work Log" entry (file+olp+datetree "~/org/fzm/fzm-log.org")
-         "* %?\nEntered on %U\n  %i\n  %a")
-
         ))
 
 (setq org-agenda-files '("~/org/33cn/gtd.org" "~/org/gtd.org"))
@@ -300,12 +294,16 @@
 (global-set-key (kbd "C-x j i") #'org-roam-node-insert)
 (global-set-key (kbd "C-x j t") #'org-roam-tag-add)
 
+(require 'auto-save)
+(auto-save-enable)
+(setq auto-save-slient t)
+
 (setq epa-pinentry-mode 'loopback)
 (pinentry-start)
 
 (require 'hledger-mode)
 (add-to-list 'auto-mode-alist '("\\.journal\\'" . hledger-mode))
-(setq hledger-jfile "~/org/Self/finance/finance.journal")
+(setq hledger-jfile "~/org/self/finance/finance.journal")
 
 (setq default-input-method "rime")
 (setq rime-librime-root "~/.emacs.d/librime/dist")

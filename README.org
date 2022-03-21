@@ -24,15 +24,14 @@ Keep Emacs config simple and native. What I focus on is Emacs itself and functio
     git clone --recurse-submodules -j8 https://github.com/meifatang/.emacs.d ~/.emacs.d
   #+end_src
 
-Note: The ~site-lisp~ directory contains submodues
-Below is the content of my config.
+*Note*: The ~site-lisp~ directory contains submodues.
 
-* early-init
+And below is the content of my config.
+
+* early-init.el
 :PROPERTIES:
 :header-args:emacs-lisp: :tangle "~/.emacs.d/early-init.el"
 :END:
-
-For my work machine. Mac mini
 
 * Init
 ** Proxy
@@ -50,7 +49,7 @@ To set enviroment
   (setenv "http_proxy" "http://127.0.0.1:7890")
   (setenv "https_proxy" "http://127.0.0.1:7890")
   (setenv "all_proxy" "socks5://127.0.0.1:7890")
-  ;; (setenv "PATH" (concat "~/go/bin:" "~/bin:" "/usr/local/opt/ruby/bin:" "/usr/local/texlive/2021/bin/universal-darwin:" (getenv "PATH")))
+  ;; (setenv "PATH" (concat "~/go/bin:" "~/bin:" "/usr/local/opt/ruby/bin:" "/usr/local/texlive/2021/bin/universal-darwin:" (getenv "PATH"))) ;; do not need
 #+end_src
 
 ** Add folder to load path
@@ -70,6 +69,8 @@ To set enviroment
 #+end_src
 
 ** Add tangle header and footer                                    :ARCHIVE:
+Need a better method.
+
 #+begin_src emacs-lisp :tangle no
   (defun add-tangle-header-and-footer ()
     (message "running in %s" (buffer-file-name))
@@ -115,7 +116,7 @@ To set enviroment
   (setq gc-cons-threshold 1000000000) ;; 100M
 #+end_src
 
-* Emacs built-in lisp/* files
+* built-in lisp/*
 ** a
 *** abbrev
 *** align
@@ -173,6 +174,7 @@ To set enviroment
 *** dired-loaddefs
 *** dired-x
 *** dired
+To ignore =.DS_Store=
 #+begin_src emacs-lisp
   (setq dired-omit-files "\\.DS_Store")
   (add-hook 'dired-mode-hook (lambda () (dired-omit-mode)))
@@ -246,8 +248,228 @@ To set enviroment
 *** fringe
 
 ** g
-*** generic 
-*** 
+*** generic-x
+*** gnus/
+
+** h
+*** help-at-pt
+*** help-fns
+*** help-macro
+*** help-mode
+*** help
+*** hex-util
+*** hexl
+*** hfy-cmap
+*** hi-lock
+*** hilit-chg
+*** hippie-exp
+*** hl-line
+*** htmlfontify-loaddefs
+*** htmlfontify
+
+** i
+*** ibuf-ext
+*** ibuf-macs
+*** ibuffer-loaddefs
+*** ibuffer
+*** icomplete
+*** ido
+*** ielm
+*** iimage
+*** image/
+*** image-dired
+*** image-file
+*** image-mode
+*** image
+*** imenu
+*** indent
+*** info-look
+*** info-xref
+*** info
+*** informat
+*** international/
+*** isearch
+*** isearchb
+
+** j
+*** jit-lock
+*** jka-cmpr-hook
+*** jka-compr
+*** json
+*** jsonrpc
+
+** k
+*** kermit
+*** keymap
+*** kmacro
+
+** l
+*** language/
+*** ldefs-boot
+*** leim/
+*** linum
+*** loaddefs
+*** loadhist
+*** loadyp
+*** locate
+*** lpr
+*** ls-lisp
+
+** m
+*** macros
+*** mail/
+*** makesum
+*** man
+*** master
+*** mb-depth
+*** md4
+*** menu-bar
+*** mh-e
+*** midnight
+*** minibuffer-eldef
+*** minibuffer
+*** misc
+*** misearch
+*** mouse-copy
+*** mouse-drag
+*** mouse
+*** mpc
+*** msb
+*** mwhell
+
+** n
+*** net/
+*** newcommnet
+*** notifications
+*** novice
+*** nxml/
+
+** o
+*** obarray
+*** obsolete/
+*** org/
+*** outline
+
+** p
+*** paren
+*** password-cache
+*** pcmpl-csv
+*** pcmpl-gnu
+*** pcmpl-linux
+*** pcmpl-rpm
+*** pcmpl-unix
+*** pcmpl-x
+*** pccomplete
+*** pixel-scroll
+*** play/
+*** plstore
+*** printing
+*** proced
+*** profiler
+*** progmodes/
+*** ps-bdf
+*** ps-def
+*** ps-mule
+*** ps-print-loaddefs
+*** ps-print
+*** ps-samp
+
+** r
+*** recentf
+*** rect
+*** register
+*** repeat
+*** replace
+*** reposition
+*** reveal
+*** rfn-eshasow
+*** rot13
+*** rtree
+*** ruler-mode
+
+** s
+*** savehist
+*** saveplace
+*** scroll-all
+*** scroll-bar
+*** scroll-lock
+*** select
+*** server
+*** ses
+*** shadowfile
+*** shell
+*** simple
+*** skeleton
+*** so-long
+*** sort
+*** soundex
+*** speedbar
+*** sqlite-mode
+*** sqlite
+*** startup
+*** strokes
+*** subdirs
+*** subr
+*** svg
+
+** t
+*** t-mouse
+*** tab-bar
+*** tab-line
+*** tabify
+*** talk
+*** tar-mode
+*** tempo
+*** term/
+*** term
+*** textmodes/
+*** thingatpt
+*** thread
+*** thumbs
+*** time-stamp
+*** time
+*** timezone
+*** tmm
+*** tool-bar
+*** tooltip
+*** transient
+*** tree-widget
+*** tutorial
+*** type-break
+
+** u
+*** uniquify
+*** url/
+*** userlock
+
+** v
+*** vc/
+*** vcursor
+*** version
+*** view
+
+** w
+*** w32-fns
+*** w32-vars
+*** wdired
+*** whitespace
+*** wid-browse
+*** wid-eidt
+*** widget
+*** windmove
+*** window
+*** winner
+*** woman
+
+** x
+*** x-dnd
+*** xdg
+*** xml
+*** xt-mouse
+*** xwidget
+
+** y
+*** yank-media
 
 * Package
 Emacs's package managment is ugly. But I do not care.
@@ -560,7 +782,6 @@ https://github.com/purcell/exec-path-from-shell
 #+end_src
 
 * ESS
-
 * DevOps
 ** emamux
 https://github.com/emacsorphanage/emamux
@@ -686,6 +907,7 @@ https://github.com/alf/ob-restclient.el
      (sql . t)
      (js . t)
      ;;(ts . t)
+     (ditaa . t)
      (dot . t)
      (elixir . t)
      (julia . t)
@@ -714,49 +936,42 @@ https://github.com/alf/ob-restclient.el
 #+begin_src emacs-lisp
    ;;(setq org-default-notes-file (concat org-directory "/notes.org"))
    (setq org-capture-templates
-         '(("g" "Gettting Things Done" entry (file+headline "~/org/Self/gtd.org" "Tasks")
+         '(("g" "Gettting Things Done" entry (file+headline "~/org/self/gtd.org" "Tasks")
             "* TODO %?\n  %i\n  %a")
 
            ;; Inbox, Journal
-           ("i" "Inbox" entry (file+olp+datetree "~/org/Self/inbox.org")
+           ("i" "Inbox" entry (file+olp+datetree "~/org/self/inbox.org")
             "* %?\nEntered on %U\n  %i\n  %a")
-           ("j" "Journal" entry (file+olp+datetree "~/org/Self/journal.org")
+           ("j" "Journal" entry (file+olp+datetree "~/org/self/journal.org")
             "* %?\nEntered on %U\n  %i\n  %a")
            
            ;; Health
-           ("d" "Diet" entry (file+olp+datetree "~/org/Self/diet.org")
+           ("d" "Diet" entry (file+olp+datetree "~/org/self/diet.org")
             "* %?\nEntered on $U\n  %i\n  %a")
-           ("h" "Health" entry (file+olp+datetree "~/org/Self/health.org")
+           ("h" "Health" entry (file+olp+datetree "~/org/self/health.org")
             "* %?\nEntered on $U\n  %i\n  %a")
-           ("f" "Fitness" entry (file+olp+datetree "~/org/Self/fitness.org")
+           ("f" "Fitness" entry (file+olp+datetree "~/org/self/fitness.org")
             "* %?\nEntered on $U\n  %i\n  %a")
 
            ;; Grow
-           ("r" "Read" entry (file+olp+datetree "~/org/Self/read.org")
+           ("r" "Read" entry (file+olp+datetree "~/org/self/read.org")
             "* %?\nEntered on $U\n  %i\n  %a")
-           ("l" "Learn" entry (file+olp+datetree "~/org/Self/learn.org")
+           ("l" "Learn" entry (file+olp+datetree "~/org/self/learn.org")
             "* %?\nEntered on $U\n  %i\n  %a")
 
            ;; Finance
            ("F" "Finance" plain
-            (file "~/org/Self/Finance/finance.journal")
+            (file "~/org/self/Finance/finance.journal")
             "%(org-read-date) %^{Description}
        %^{Category|Expenses:Food:Groceries|Expenses:Food:Dining|Expenses:Transport|Expenses:Home|Expenses:Entertainment|Revenues:Salary|Revenues:Misc}    %^{Amount}
        %^{Asset/Liability Account|Assets:Bank:Checking|Assets:Cash|Liabilities:Bank:Credit Card}"
             :empty-lines 1)
 
            ("e" "Entertainment")
-           ("em" "Movie" entry (file+olp+datetree "~/org/Self/entertainments.org" "Movie")
+           ("em" "Movie" entry (file+olp+datetree "~/org/self/entertainments.org" "Movie")
             "* %?\nEntered on $U\n  %i\n  %a")
-           ("et" "TV Show" entry (file+olp+datetree "~/org/Self/entertainments.org" "TV")
+           ("et" "TV Show" entry (file+olp+datetree "~/org/self/entertainments.org" "TV")
             "* %?\nEntered on $U\n  %i\n  %a")
-
-           ("3" "fzm")
-           ("3t" "fzm's Todo" entry (file+headline "~/org/fzm/fzm-gtd.org" "Tasks")
-            "* TODO %?\n  %i\n  %a")
-           ("3l" "fzm's Work Log" entry (file+olp+datetree "~/org/fzm/fzm-log.org")
-            "* %?\nEntered on %U\n  %i\n  %a")
-
            ))
 #+end_src
 
@@ -837,6 +1052,15 @@ https://github.com/org-roam/org-roam-ui
 https://github.com/jkitchin/org-ref
 
 * Miscellaneous
+** auto-save.el
+https://manateelazycat.github.io/emacs/2016/03/16/auto-save.html
+
+#+begin_src emacs-lisp
+  (require 'auto-save)
+  (auto-save-enable)
+  (setq auto-save-slient t)
+#+end_src
+
 ** pinentry
 #+begin_src emacs-lisp
   (setq epa-pinentry-mode 'loopback)
@@ -848,7 +1072,7 @@ https://gist.github.com/simonmichael/92aade653065ed9c9e215d03651b0baa
 #+begin_src emacs-lisp
   (require 'hledger-mode)
   (add-to-list 'auto-mode-alist '("\\.journal\\'" . hledger-mode))
-  (setq hledger-jfile "~/org/Self/finance/finance.journal")
+  (setq hledger-jfile "~/org/self/finance/finance.journal")
 #+end_src
 
 ** vterm
@@ -911,12 +1135,10 @@ Copy from https://github.com/NicolasPetton/emacs.d/blob/master/local/geoip.el
   (require 'geoip)
 #+end_src
 
-* Felix's Functions
+* lisp/felix.el
 :PROPERTIES:
 :header-args:emacs-lisp: :tangle "~/.emacs.d/lisp/felix.el"
 :END:
-
-[[file:lisp/felix.el][felix.el]]
 
 ** open-with-vscode
 #+begin_src emacs-lisp
@@ -935,7 +1157,7 @@ Copy from https://github.com/NicolasPetton/emacs.d/blob/master/local/geoip.el
   (provide 'felix)
 #+end_src
 
-* Felix's Theme
+* felix-theme.el
 :PROPERTIES:
 :header-args:emacs-lisp: :tangle "~/.emacs.d/felix-theme.el"
 :END:
@@ -980,4 +1202,4 @@ Copy from https://github.com/NicolasPetton/emacs.d/blob/master/local/geoip.el
     (load-file (expand-file-name "init-private.el" user-emacs-directory)))
 #+end_src
 
-Bye!
+That is all. Bye!
