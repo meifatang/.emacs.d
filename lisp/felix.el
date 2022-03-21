@@ -1,3 +1,4 @@
+
 (defun open-with-vscode ()
   "Open current file with vscode."
   (interactive)

@@ -52,7 +52,7 @@
 (add-hook 'dired-mode-hook (lambda () (dired-omit-mode)))
 
 (setq package-list '(google-this exec-path-from-shell rime pinentry auctex
-                                 rainbow-delimiters sudo-edit which-key ivy counsel amx ivy-rich helpful
+                                 rainbow-delimiters which-key ivy counsel amx ivy-rich helpful
                                  csv-mode nginx-mode jenkinsfile-mode dockerfile-mode
                                  undo-tree smart-hungry-delete
                                  expand-region browse-kill-ring
@@ -137,11 +137,7 @@
 (global-set-key (kbd "<backspace>") 'smart-hungry-delete-backward-char)
 (global-set-key (kbd "C-d") 'smart-hungry-delete-forward-char)
 
-(require 'sudo-edit)
-
 (global-set-key (kbd "C-=") 'er/expand-region)
-
-(require 'thing-edit)
 
 (add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
 
@@ -173,10 +169,6 @@
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
-(require 'ecloud)
-
-(require 'password-generator)
-
 (setq elfeed-feeds
     '("http://nullprogram.com/feed/"
       "https://planet.emacslife.com/atom.xml"
@@ -205,7 +197,6 @@
    (clojure . t)
    (sql . t)
    (js . t)
-   ;;(ts . t)
    (ditaa . t)
    (dot . t)
    (elixir . t)
@@ -283,9 +274,6 @@
 ;;(require 'org-superstar)
 ;;(add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
 
-(require 'org2ctex)
-(org2ctex-toggle t)
-
 (setq org-roam-directory "~/org")
 (setq org-roam-v2-ack t)
 (setq org-roam-completion-everywhere t)
@@ -304,10 +292,6 @@
 (global-set-key (kbd "C-x j f") #'org-roam-node-find)
 (global-set-key (kbd "C-x j i") #'org-roam-node-insert)
 (global-set-key (kbd "C-x j t") #'org-roam-tag-add)
-
-(require 'auto-save)
-(auto-save-enable)
-(setq auto-save-slient t)
 
 (setq epa-pinentry-mode 'loopback)
 (pinentry-start)
@@ -331,7 +315,21 @@
 
 (midnight-mode)
 
+(require 'sudo-edit)
+
+(require 'thing-edit)
+
+(require 'ecloud)
+
+(require 'password-generator)
+
+(require 'auto-save)
+(auto-save-enable)
+(setq auto-save-slient t)
+
 (require 'geoip)
+
+(require 'felix)
 
 (load-theme 'felix t)
 
