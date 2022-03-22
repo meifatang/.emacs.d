@@ -219,35 +219,35 @@
 (setq org-log-done 'note)
 
 (setq org-capture-templates
-      '(("g" "Gettting Things Done" entry (file+headline "~/org/self/gtd.org" "Tasks")
-         "* TODO %?\n  %i\n  %a\n")
+      '(("g" "Gettting Things Done" entry (file+headline "~/org/felix/gtd.org" "Tasks")
+         "* TODO %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t))\n  %i  %a\n")
 
         ;; Inbox, Journal
-        ("i" "Inbox" entry (file+olp+datetree "~/org/self/inbox.org")
+        ("i" "Inbox" entry (file+olp+datetree "~/org/felix/inbox.org")
          "* %?\nEntered on %U\n  %i  %a")
-        ("j" "Journal" entry (file+olp+datetree "~/org/self/journal.org")
+        ("j" "Journal" entry (file+olp+datetree "~/org/felix/journal.org")
          "* %?\nEntered on %U\n  %i  %a")
 
         ;; Health, Fitness
         ("h" "Health")
-        ("hd" "Diet" entry (file+olp+datetree "~/org/self/health.org" "Diet")
+        ("hd" "Diet" entry (file+olp+datetree "~/org/felix/health.org" "Diet")
          "* %?\nEntered on $U\n  %i  %a")
-        ("hw" "Weight" entry (file+olp+datetree "~/org/self/health.org" "Weight")
+        ("hw" "Weight" entry (file+olp+datetree "~/org/felix/health.org" "Weight")
          "* %?\nEntered on $U\n  %i  %a")
 
         ("f" "Fitness")
-        ("fr" "Running" entry (file+olp+datetree "~/org/self/fitness.org" "Running")
+        ("fr" "Running" entry (file+olp+datetree "~/org/felix/fitness.org" "Running")
          "* %?\nEntered on $U\n  %i  %a")
 
         ;; Reading, Learning
-        ("r" "Reading List" entry (file+olp+datetree "~/org/self/reading.org")
+        ("r" "Reading List" entry (file+olp+datetree "~/org/felix/reading.org")
          "* %?\nEntered on $U\n  %i  %a")
-        ("l" "Learn" entry (file+olp+datetree "~/org/self/learning.org")
+        ("l" "Learn" entry (file+olp+datetree "~/org/felix/learning.org")
          "* %?\nEntered on $U\n  %i  %a")
 
         ;; Finance
         ("F" "Finance Record" plain
-         (file "~/org/self/Finance/finance.journal")
+         (file "~/org/felix/Finance/finance.journal")
          "%(org-read-date) %^{Description}
     %^{Category|Expenses:Food:Groceries|Expenses:Food:Dining|Expenses:Transport|Expenses:Home|Expenses:Entertainment|Revenues:Salary|Revenues:Misc}    %^{Amount}
     %^{Asset/Liability Account|Assets:Bank:Checking|Assets:Cash|Liabilities:Bank:Credit Card}"
@@ -255,19 +255,23 @@
 
         ;; Entertainments
         ("e" "Entertainment")
-        ("em" "Movie" entry (file+olp+datetree "~/org/self/entertainments.org" "Movie")
+        ("em" "Movie" entry (file+olp+datetree "~/org/felix/entertainments.org" "Movie")
          "* %?\nEntered on $U\n  %i  %a")
-        ("et" "TV Show" entry (file+olp+datetree "~/org/self/entertainments.org" "TV")
+        ("et" "TV Show" entry (file+olp+datetree "~/org/felix/entertainments.org" "TV")
          "* %?\nEntered on $U\n  %i  %a")
 
         ;; Job
-        ("J" "Job" table-line (file+headline "~/org/self/job.org" "Logging")
+        ("J" "Job" table-line (file+headline "~/org/felix/job.org" "Logging")
          "| %U | %^{Company} | %^{Type} | %^{Status} | %^{Note} |")
         ))
 
 (global-set-key (kbd "C-c c") #'org-capture)
 
-(setq org-agenda-files '("~/org/self/gtd.org"))
+(setq org-agenda-files '("~/org/felix/gtd.org"
+                         "~/org/20220321210142-the_calculus_lifesaver.org"
+                         "~/org/20220322134315-c_c_dev.org"
+                         "~/org/20211011152232-tangmeifa_com.org"
+                         ))
 
 (global-set-key (kbd "C-c a") #'org-agenda)
 
@@ -298,7 +302,7 @@
 
 (require 'hledger-mode)
 (add-to-list 'auto-mode-alist '("\\.journal\\'" . hledger-mode))
-(setq hledger-jfile "~/org/self/finance/finance.journal")
+(setq hledger-jfile "~/org/felix/finance/finance.journal")
 
 (setq default-input-method "rime")
 (setq rime-librime-root "~/.emacs.d/librime/dist")
