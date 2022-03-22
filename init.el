@@ -219,31 +219,35 @@
 (setq org-log-done 'note)
 
 (setq org-capture-templates
-      '(("g" "Gettting Things Done" entry (file+headline "~/org/felix/gtd.org" "Tasks")
+      '(
+        ;; GTD
+        ("g" "Gettting Things Done" entry (file+headline "~/org/felix/gtd.org" "Tasks")
+         "* TODO %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t))\n  %i  %a\n")
+
+        ;; Reading, Learning
+        ("r" "Reading List" entry (file+headline "~/org/felix/gtd.org" "Reading")
+         "* TODO %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t))\n  %i  %a\n")
+        ("l" "Learn" entry (file+headline "~/org/felix/gtd.org" "Learning")
          "* TODO %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t))\n  %i  %a\n")
 
         ;; Inbox, Journal
         ("i" "Inbox" entry (file+olp+datetree "~/org/felix/inbox.org")
-         "* %?\nEntered on %U\n  %i  %a")
+         "* %?\n  %i  %a"
+         :tree-type week)
         ("j" "Journal" entry (file+olp+datetree "~/org/felix/journal.org")
-         "* %?\nEntered on %U\n  %i  %a")
+         "* %?\nEntered on %U\n  %i  %a"
+         :tree-type week)
 
         ;; Health, Fitness
         ("h" "Health")
-        ("hd" "Diet" entry (file+olp+datetree "~/org/felix/health.org" "Diet")
-         "* %?\nEntered on $U\n  %i  %a")
-        ("hw" "Weight" entry (file+olp+datetree "~/org/felix/health.org" "Weight")
-         "* %?\nEntered on $U\n  %i  %a")
+        ("hd" "Diet" table-line (file+headline "~/org/felix/health.org" "Diet")
+         "| %u | %^{Food} | %^{Type} | %^{Note} |")
+        ("hw" "Weight" table-line (file+headline "~/org/felix/health.org" "Weight")
+         "| %U | %^{Weight} | %^{Note} |")
 
         ("f" "Fitness")
-        ("fr" "Running" entry (file+olp+datetree "~/org/felix/fitness.org" "Running")
-         "* %?\nEntered on $U\n  %i  %a")
-
-        ;; Reading, Learning
-        ("r" "Reading List" entry (file+olp+datetree "~/org/felix/reading.org")
-         "* %?\nEntered on $U\n  %i  %a")
-        ("l" "Learn" entry (file+olp+datetree "~/org/felix/learning.org")
-         "* %?\nEntered on $U\n  %i  %a")
+        ("fr" "Running" table-line (file+headline "~/org/felix/health.org" "Fitness" "Running")
+         "| %U | %^{Distance} | %^{Avg.Pace} | %^{Note} |")
 
         ;; Finance
         ("F" "Finance Record" plain
@@ -256,9 +260,11 @@
         ;; Entertainments
         ("e" "Entertainment")
         ("em" "Movie" entry (file+olp+datetree "~/org/felix/entertainments.org" "Movie")
-         "* %?\nEntered on $U\n  %i  %a")
+         "* %?\nEntered on $U\n  %i  %a"
+         :tree-type month)
         ("et" "TV Show" entry (file+olp+datetree "~/org/felix/entertainments.org" "TV")
-         "* %?\nEntered on $U\n  %i  %a")
+         "* %?\nEntered on $U\n  %i  %a"
+         :tree-type month)
 
         ;; Job
         ("J" "Job" table-line (file+headline "~/org/felix/job.org" "Logging")

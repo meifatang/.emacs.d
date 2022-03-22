@@ -1,6 +1,9 @@
 (deftheme felix
   "Created 2021-12-05.")
 
+(custom-set-variables
+ '(tab-bar-show nil))
+
 (custom-theme-set-faces
  'felix
 
