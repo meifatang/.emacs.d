@@ -51,27 +51,7 @@
 (setq dired-omit-files "\\.DS_Store")
 (add-hook 'dired-mode-hook (lambda () (dired-omit-mode)))
 
-(setq package-list '(google-this exec-path-from-shell rime pinentry auctex
-                                 rainbow-delimiters which-key ivy counsel amx ivy-rich helpful
-                                 csv-mode nginx-mode jenkinsfile-mode dockerfile-mode
-                                 undo-tree smart-hungry-delete
-                                 expand-region browse-kill-ring
-                                 projectile
-                                 magit forge
-                                 toml-mode yaml-mode ansible csv-mode nginx-mode jenkinsfile-mode
-                                 terraform-mode dockerfile-mode docker-compose-mode
-                                 go-mode rust-mode julia-mode slime haskell-mode erlang elixir-mode applescript-mode
-                                 yasnippet yasnippet-snippets yatemplate
-                                 lsp-mode company flycheck
-                                 ess
-                                 emamux edbi pass logview restclient docker kubernetes jenkins
-                                 0x0 elfeed leetcode
-                                 ob-async ob-go ob-rust ob-browser ob-dart ob-graphql
-                                 ob-http ob-ipython ob-mongo ob-tmux ob-uart ob-restclient ob-elixir
-                                 org2ctex org-roam org-roam-ui org-ref
-                                 org-noter org-pdftools org-noter-pdftools pdf-tools
-                                 hledger-mode telega bongo slack vterm
-                                 restart-emacs guix nix-mode nix-env-install nix-buffer pcache))
+(require 'packages)
 
 (setq package-archives '(("org"   . "https://orgmode.org/elpa/")
                          ("melpa" . "https://melpa.org/packages/")
@@ -83,7 +63,7 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(dolist (package package-list)
+(dolist (package package-selected-packages)
   (unless (package-installed-p package)
     (package-install package)))
 
