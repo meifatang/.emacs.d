@@ -75,6 +75,7 @@
 
 (setq package-archives '(("org"   . "https://orgmode.org/elpa/")
                          ("melpa" . "https://melpa.org/packages/")
+                         ("nongnu" . "https://elpa.nongnu.org/nongnu/")
                          ("gnu"   . "https://elpa.gnu.org/packages/")))
 
 (package-initialize)
