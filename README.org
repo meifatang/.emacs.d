@@ -577,16 +577,6 @@ https://github.com/Wilfred/helpful
 
 * Navigation
 * Visual
-** undo-tree
-https://github.com/akhayyat/emacs-undo-tree
-
-=undo-tree-visualize= is awesome
-
-#+begin_src emacs-lisp
-  (require 'undo-tree)
-  (global-undo-tree-mode)
-#+end_src
-
 ** TODO smart-hungry-delete
 https://github.com/hrehfeld/emacs-smart-hungry-delete
 

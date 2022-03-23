@@ -110,7 +110,7 @@
 				  terraform-mode
 				  toml-mode
 				  tsc
-				  undo-tree
+				  ;;undo-tree
 				  uuidgen
 				  vagrant
 				  valign

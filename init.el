@@ -111,9 +111,6 @@
 (global-set-key (kbd "C-h F") #'helpful-function)
 (global-set-key (kbd "C-h C") #'helpful-command)
 
-(require 'undo-tree)
-(global-undo-tree-mode)
-
 (smart-hungry-delete-add-default-hooks)
 (global-set-key (kbd "<backspace>") 'smart-hungry-delete-backward-char)
 (global-set-key (kbd "C-d") 'smart-hungry-delete-forward-char)
