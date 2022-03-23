@@ -958,6 +958,12 @@ https://github.com/alf/ob-restclient.el
   (global-set-key (kbd "C-c a") #'org-agenda)
 #+end_src
 
+** org-contrib
+https://git.sr.ht/~bzg/org-contrib
+
+#+begin_src emacs-lisp
+#+end_src
+
 ** org-superstart-mode
 https://github.com/sabof/org-bullets
 
@@ -969,7 +975,7 @@ https://github.com/sabof/org-bullets
 ** org2ctex
 https://github.com/tumashu/org2ctex
 
-It take too long to load.
+It take too long to load. do NOT tangle unless it is needed.
 
 #+begin_src emacs-lisp :tangle no
   (require 'org2ctex)
@@ -1116,7 +1122,7 @@ https://github.com/vandrlexay/emacs-password-genarator.git
 
 * lisp/
 ** auto-save.el
-Inspire from https://manateelazycat.github.io/emacs/2016/03/16/auto-save.html
+Inspired from https://manateelazycat.github.io/emacs/2016/03/16/auto-save.html
 
 #+begin_src emacs-lisp
   (require 'auto-save)
@@ -1135,6 +1141,9 @@ Copy from https://github.com/NicolasPetton/emacs.d/blob/master/local/geoip.el
 #+begin_src emacs-lisp
   (require 'felix)
 #+end_src
+
+** packages.el
+See [[*Package Managment][Package Managment]]
 
 * The End
 ** load-theme

@@ -259,6 +259,8 @@
 
 (global-set-key (kbd "C-c a") #'org-agenda)
 
+
+
 ;;(require 'org-superstar)
 ;;(add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
 
