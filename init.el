@@ -67,6 +67,8 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+(require 'auto-dark)
+
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 (add-hook 'after-init-hook 'which-key-mode)
@@ -263,6 +265,8 @@
 
 ;;(require 'org-superstar)
 ;;(add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+
+(setq org-latex-pdf-process '("xelatex -interaction nonstopmode %f" "xelatex -interaction nonstopmode %f"))
 
 (setq org-roam-directory "~/org")
 (setq org-roam-v2-ack t)

@@ -490,6 +490,13 @@ Emacs's package managment is ugly. But I do not care.
 #+end_src
 
 * Interface
+** auto-dark
+Copy from https://github.com/LionyxML/auto-dark-emacs
+
+#+begin_src emacs-lisp
+  (require 'auto-dark)
+#+end_src
+
 ** rainbow-delimiters
 https://github.com/Fanael/rainbow-delimiters
 
@@ -980,6 +987,11 @@ It take too long to load. do NOT tangle unless it is needed.
 #+begin_src emacs-lisp :tangle no
   (require 'org2ctex)
   (org2ctex-toggle t)
+#+end_src
+
+*** alternative method
+#+begin_src emacs-lisp
+  (setq org-latex-pdf-process '("xelatex -interaction nonstopmode %f" "xelatex -interaction nonstopmode %f"))
 #+end_src
 
 ** org-roam
