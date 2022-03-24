@@ -309,6 +309,8 @@
 
 (midnight-mode)
 
+(require 'color-rg)
+
 (require 'sudo-edit)
 
 (require 'thing-edit)
@@ -317,6 +319,9 @@
 
 (require 'password-generator)
 
+(require 'awesome-tray)
+(awesome-tray-mode 1)
+
 (require 'auto-save)
 (auto-save-enable)
 (setq auto-save-slient t)
@@ -324,8 +329,6 @@
 (require 'geoip)
 
 (require 'felix)
-
-(load-theme 'felix t)
 
 (when (file-exists-p (expand-file-name "init-private.el" user-emacs-directory))
   (load-file (expand-file-name "init-private.el" user-emacs-directory)))

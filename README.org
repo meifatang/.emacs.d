@@ -1097,6 +1097,10 @@ Package that is not from ELPA or MELPA
 ** color-rg
 https://github.com/manateelazycat/color-rg.git
 
+#+begin_src emacs-lisp
+  (require 'color-rg)
+#+end_src
+
 ** grammatical-edit
 https://github.com/manateelazycat/grammatical-edit
 
@@ -1132,6 +1136,14 @@ https://github.com/vandrlexay/emacs-password-genarator.git
   (require 'password-generator)
 #+end_src
 
+** awesome-tray
+https://github.com/manateelazycat/awesome-tray.git
+
+#+begin_src emacs-lisp
+  (require 'awesome-tray)
+  (awesome-tray-mode 1)
+#+end_src
+
 * lisp/
 ** auto-save.el
 Inspired from https://manateelazycat.github.io/emacs/2016/03/16/auto-save.html
@@ -1158,10 +1170,10 @@ Copy from https://github.com/NicolasPetton/emacs.d/blob/master/local/geoip.el
 See [[*Package Managment][Package Managment]]
 
 * The End
-** load-theme
-[[file:felix-theme.el]]
+** load-theme felix theme
+[[file:lisp/felix-theme.el]]
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (load-theme 'felix t)
 #+end_src
 
