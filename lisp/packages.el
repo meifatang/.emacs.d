@@ -86,7 +86,7 @@
 				  org-roam-ui
 				  org-superstar
 				  org-tree-slide
-				  org2ctex
+				  ;;org2ctex
 				  ox-pandoc
 				  pass
 				  pcache
