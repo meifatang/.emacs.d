@@ -16,6 +16,3 @@
 [submodule "site-lisp/emacs-password-genarator"]
 	path = site-lisp/emacs-password-genarator
 	url = https://github.com/vandrlexay/emacs-password-genarator.git
-[submodule "site-lisp/awesome-tray"]
-	path = site-lisp/awesome-tray
-	url = https://github.com/manateelazycat/awesome-tray.git

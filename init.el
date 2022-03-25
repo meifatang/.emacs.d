@@ -23,8 +23,8 @@
 (add-folder-to-load-path (expand-file-name "site-lisp" user-emacs-directory))
 (add-folder-to-load-path (expand-file-name "lisp" user-emacs-directory))
 
-(setq user-full-name "Felix Tang")
-(setq user-mail-address "me@tangmeifa.com")
+(setq user-full-name "Felix Tang"
+      user-mail-address "tangmifa@gmail.com")
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
@@ -149,12 +149,6 @@
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
-(setq elfeed-feeds
-    '("http://nullprogram.com/feed/"
-      "https://planet.emacslife.com/atom.xml"
-      "https://www.lujun9972.win/rss.xml"
-      ))
-
 (setq leetcode-save-solutions t)
 (setq leetcode-directory "~/leetcode")
 
@@ -257,14 +251,12 @@
                          "~/org/20220321210142-the_calculus_lifesaver.org"
                          "~/org/20220322134315-c_c_dev.org"
                          "~/org/20211011152232-tangmeifa_com.org"
+                         "~/org/felix/job.org"
                          ))
 
 (global-set-key (kbd "C-c a") #'org-agenda)
 
 
-
-;;(require 'org-superstar)
-;;(add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
 
 (setq org-latex-pdf-process '("xelatex -interaction nonstopmode %f" "xelatex -interaction nonstopmode %f"))
 
@@ -318,9 +310,6 @@
 (require 'ecloud)
 
 (require 'password-generator)
-
-(require 'awesome-tray)
-(awesome-tray-mode 1)
 
 (require 'auto-save)
 (auto-save-enable)

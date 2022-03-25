@@ -23,12 +23,11 @@ Keep Emacs config simple and native.
   #+begin_src shell
     git clone --recurse-submodules -j8 https://github.com/meifatang/.emacs.d ~/.emacs.d
   #+end_src
-
 *Note*: The ~site-lisp~ directory contains submodues.
-
 And below is the content of my config.
 
 * early-init.el
+config early than init.el
 [[file:early-init.el]]
 
 * Init
@@ -68,7 +67,6 @@ To set enviroment
 
 ** Add tangle header and footer                                    :ARCHIVE:
 Need a better method.
-
 #+begin_src emacs-lisp :tangle no
   (defun add-tangle-header-and-footer ()
     (message "running in %s" (buffer-file-name))
@@ -88,8 +86,8 @@ Need a better method.
 
 ** Basic Config
 #+begin_src emacs-lisp
-  (setq user-full-name "Felix Tang")
-  (setq user-mail-address "me@tangmeifa.com")
+  (setq user-full-name "Felix Tang"
+        user-mail-address "tangmifa@gmail.com")
 
   (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
@@ -470,7 +468,6 @@ To ignore =.DS_Store=
 
 * Package Managment
 Emacs's package managment is ugly. But I do not care.
-
 #+begin_src emacs-lisp
   (require 'packages)
 
@@ -492,21 +489,18 @@ Emacs's package managment is ugly. But I do not care.
 * Interface
 ** auto-dark
 Copy from https://github.com/LionyxML/auto-dark-emacs
-
 #+begin_src emacs-lisp
   (require 'auto-dark)
 #+end_src
 
 ** rainbow-delimiters
 https://github.com/Fanael/rainbow-delimiters
-
 #+begin_src emacs-lisp
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 #+end_src
 
 ** which-key
 https://github.com/justbur/emacs-which-key
-
 #+begin_src emacs-lisp
   (add-hook 'after-init-hook 'which-key-mode)
 #+end_src
@@ -518,10 +512,7 @@ https://github.com/justbur/emacs-which-key
 
 ** TODO ivy, swipper, counsel
 https://github.com/abo-abo/swiper
-
-(ivy-immediate-done)
 https://github.com/abo-abo/swiper/blob/f0b2bc618a84d25c0b3d05314d5d5693c27b2d3e/doc/ivy-help.org#key-bindings-for-single-selection
-
 #+begin_src emacs-lisp
   (ivy-mode)
 
@@ -554,7 +545,6 @@ https://github.com/abo-abo/swiper/blob/f0b2bc618a84d25c0b3d05314d5d5693c27b2d3e/
 
 *** ivy-rich
 https://github.com/Yevgnen/ivy-rich
-
 #+begin_src emacs-lisp
   (require 'ivy-rich)
   (ivy-rich-mode 1)
@@ -563,7 +553,6 @@ https://github.com/Yevgnen/ivy-rich
 
 ** amx
 https://github.com/DarwinAwardWinner/amx
-
 To prioritizing your *most-used* commands in the completion list and showing keyboard shortcuts
 
 ** TODO google-this
@@ -571,7 +560,6 @@ https://github.com/Malabarba/emacs-google-this
 
 ** TODO helpful
 https://github.com/Wilfred/helpful
-
 #+begin_src emacs-lisp
   (global-set-key (kbd "C-h f") #'helpful-callable)
   (global-set-key (kbd "C-h v") #'helpful-variable)
@@ -583,10 +571,10 @@ https://github.com/Wilfred/helpful
 #+end_src
 
 * Navigation
+** TODO jump between windows
 * Visual
 ** TODO smart-hungry-delete
 https://github.com/hrehfeld/emacs-smart-hungry-delete
-
 #+begin_src emacs-lisp
   (smart-hungry-delete-add-default-hooks)
   (global-set-key (kbd "<backspace>") 'smart-hungry-delete-backward-char)
@@ -596,7 +584,6 @@ https://github.com/hrehfeld/emacs-smart-hungry-delete
 * Editing
 ** expand-region
 https://github.com/magnars/expand-region.el
-
 #+begin_src emacs-lisp
   (global-set-key (kbd "C-=") 'er/expand-region)
 #+end_src
@@ -608,7 +595,6 @@ Is Good
 * Project
 ** projectile
 https://github.com/bbatsov/projectile
-
 #+begin_src emacs-lisp :tangle no
   (projectile-mode +1)
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
@@ -627,21 +613,18 @@ https://github.com/magit/forge
 ** yaml-mode
 ** ansible
 https://github.com/k1LoW/emacs-ansible
-
 #+begin_src emacs-lisp
   (add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
 #+end_src
 
 ** csv-mode
 https://git.savannah.gnu.org/cgit/emacs/elpa.git/?h=externals/csv-mode
-
 #+begin_src emacs-lisp
   (add-hook 'csv-mode-hook 'csv-align-mode)
 #+end_src
 
 ** nginx-mode
 https://github.com/ajc/nginx-mode
-
 #+begin_src emacs-lisp
   (add-to-list 'auto-mode-alist '("/nginx/sites-\\(?:available\\|enabled\\)/" . nginx-mode))
 #+end_src
@@ -654,7 +637,6 @@ https://github.com/emacsorphanage/terraform-mode
 
 ** dockerfile-mode
 https://github.com/spotify/dockerfile-mode
-
 #+begin_src emacs-lisp
   (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 #+end_src
@@ -674,7 +656,6 @@ https://github.com/JuliaEditorSupport/julia-emacs
 
 ** slime
 For Common lisp
-
 #+begin_src emacs-lisp
   (setq inferior-lisp-program "/usr/local/bin/sbcl")
   (setq slime-contribs '(slime-fancy))
@@ -689,7 +670,6 @@ For Common lisp
 https://github.com/joaotavora/yasnippet
 https://github.com/AndreaCrotti/yasnippet-snippets
 https://github.com/joaotavora/yasmate
-
 #+begin_src emacs-lisp
   (require 'yasnippet)
   (require 'yasnippet-snippets)
@@ -703,7 +683,6 @@ https://github.com/joaotavora/yasmate
 
 ** lsp-mode
 https://github.com/joaotavora/yasmate
-
 #+begin_src emacs-lisp
   (require 'lsp-mode)
   (add-hook 'sh-mode-hook #'lsp)
@@ -715,14 +694,12 @@ https://github.com/emacs-lsp/dap-mode
 
 ** company
 https://github.com/company-mode/company-mode
-
 #+begin_src emacs-lisp
   (add-hook 'after-init-hook 'global-company-mode)
 #+end_src
 
 ** flycheck
 https://github.com/flycheck/flycheck
-
 #+begin_src emacs-lisp :tangle no
  (global-flycheck-mode)
 #+end_src
@@ -730,7 +707,6 @@ https://github.com/flycheck/flycheck
 * Shell
 ** exec-path-from-shell
 https://github.com/purcell/exec-path-from-shell
-
 #+begin_src emacs-lisp
   (require 'exec-path-from-shell)
   (when (memq window-system '(mac ns x))
@@ -765,20 +741,8 @@ https://github.com/rmuslimov/jenkins.el
 
 * Internet
 ** 0x0
-** elfeed
-https://github.com/skeeto/elfeed
-
-#+begin_src emacs-lisp
-  (setq elfeed-feeds
-      '("http://nullprogram.com/feed/"
-        "https://planet.emacslife.com/atom.xml"
-        "https://www.lujun9972.win/rss.xml"
-        ))
-#+end_src
-
 ** leetcode
 https://github.com/kaiwk/leetcode.el
-
 #+begin_src emacs-lisp
   (setq leetcode-save-solutions t)
   (setq leetcode-directory "~/leetcode")
@@ -960,30 +924,20 @@ https://github.com/alf/ob-restclient.el
                            "~/org/20220321210142-the_calculus_lifesaver.org"
                            "~/org/20220322134315-c_c_dev.org"
                            "~/org/20211011152232-tangmeifa_com.org"
+                           "~/org/felix/job.org"
                            ))
 
   (global-set-key (kbd "C-c a") #'org-agenda)
 #+end_src
 
-** org-contrib
+** TODO org-contrib
 https://git.sr.ht/~bzg/org-contrib
-
 #+begin_src emacs-lisp
-#+end_src
-
-** org-superstart-mode
-https://github.com/sabof/org-bullets
-
-#+begin_src emacs-lisp
-  ;;(require 'org-superstar)
-  ;;(add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
 #+end_src
 
 ** org2ctex
 https://github.com/tumashu/org2ctex
-
-It take too long to load. do NOT tangle unless it is needed.
-
+_It take too long to load. do NOT tangle unless it is needed._
 #+begin_src emacs-lisp :tangle no
   (require 'org2ctex)
   (org2ctex-toggle t)
@@ -996,7 +950,6 @@ It take too long to load. do NOT tangle unless it is needed.
 
 ** org-roam
 https://github.com/org-roam/org-roam
-
 #+begin_src emacs-lisp
   (setq org-roam-directory "~/org")
   (setq org-roam-v2-ack t)
@@ -1051,7 +1004,6 @@ https://gist.github.com/simonmichael/92aade653065ed9c9e215d03651b0baa
 
 ** rime
 https://github.com/DogLooksGood/emacs-rime
-
 #+begin_src emacs-lisp
   (setq default-input-method "rime")
   (setq rime-librime-root "~/.emacs.d/librime/dist")
@@ -1096,7 +1048,6 @@ Package that is not from ELPA or MELPA
 
 ** color-rg
 https://github.com/manateelazycat/color-rg.git
-
 #+begin_src emacs-lisp
   (require 'color-rg)
 #+end_src
@@ -1106,40 +1057,34 @@ https://github.com/manateelazycat/grammatical-edit
 
 ** sudo-edit
 https://github.com/nflath/sudo-edit.git
-
 #+begin_src emacs-lisp
   (require 'sudo-edit)
 #+end_src
 
 ** thing-edit
 https://github.com/manateelazycat/thing-edit
-
 #+begin_src emacs-lisp
   (require 'thing-edit)
 #+end_src
 
 ** ecloud
 https://github.com/meifatang/ecloud.git
-
 Fork from https://github.com/techniumlabs/ecloud
-
 Install Require: =pcache=
-
 #+begin_src emacs-lisp
   (require 'ecloud)
 #+end_src
 
 ** emacs-password-generator
 https://github.com/vandrlexay/emacs-password-genarator.git
-
 #+begin_src emacs-lisp
   (require 'password-generator)
 #+end_src
 
 ** awesome-tray
+Not realy good.
 https://github.com/manateelazycat/awesome-tray.git
-
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (require 'awesome-tray)
   (awesome-tray-mode 1)
 #+end_src
@@ -1147,7 +1092,6 @@ https://github.com/manateelazycat/awesome-tray.git
 * lisp/
 ** auto-save.el
 Inspired from https://manateelazycat.github.io/emacs/2016/03/16/auto-save.html
-
 #+begin_src emacs-lisp
   (require 'auto-save)
   (auto-save-enable)
@@ -1156,7 +1100,6 @@ Inspired from https://manateelazycat.github.io/emacs/2016/03/16/auto-save.html
 
 ** geoip.el
 Copy from https://github.com/NicolasPetton/emacs.d/blob/master/local/geoip.el
-
 #+begin_src emacs-lisp
   (require 'geoip)
 #+end_src
@@ -1170,16 +1113,15 @@ Copy from https://github.com/NicolasPetton/emacs.d/blob/master/local/geoip.el
 See [[*Package Managment][Package Managment]]
 
 * The End
-** load-theme felix theme
+** TODO load-theme felix theme
+@@commnet: personal felix-theme@@
 [[file:lisp/felix-theme.el]]
-
 #+begin_src emacs-lisp :tangle no
   (load-theme 'felix t)
 #+end_src
 
 ** Private
 [[file:init-private.el]]
-
 #+begin_src emacs-lisp
   (when (file-exists-p (expand-file-name "init-private.el" user-emacs-directory))
     (load-file (expand-file-name "init-private.el" user-emacs-directory)))

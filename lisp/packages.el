@@ -18,7 +18,7 @@
 				  easy-hugo
 				  edbi
 				  ein
-				  elfeed
+				  ;;elfeed
 				  elixir-mode
 				  elpl
 				  elpy
@@ -84,7 +84,7 @@
 				  org-ref
 				  org-roam
 				  org-roam-ui
-				  org-superstar
+				  ;;org-superstar
 				  org-tree-slide
 				  ;;org2ctex
 				  ox-pandoc
