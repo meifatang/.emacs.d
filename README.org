@@ -150,6 +150,7 @@ To ignore =.DS_Store=
 #+begin_src emacs-lisp
   (setq dired-omit-files "\\.DS_Store")
   (add-hook 'dired-mode-hook (lambda () (dired-omit-mode)))
+  (add-hook 'dired-mode-hook 'auto-revert-mode)
 #+end_src
 
 *** dirtrack

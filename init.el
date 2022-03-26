@@ -42,6 +42,7 @@
 
 (setq dired-omit-files "\\.DS_Store")
 (add-hook 'dired-mode-hook (lambda () (dired-omit-mode)))
+(add-hook 'dired-mode-hook 'auto-revert-mode)
 
 (require 'packages)
 
