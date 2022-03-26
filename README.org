@@ -1,12 +1,11 @@
 :PROPERTIES:
-:header-args:emacs-lisp: :tangle "~/.emacs.d/init.el"
+:header-args:emacs-lisp: :tangle "~/.emacs.d/init.el" @@commnet: global tangle file@@
 :END:
-#+TITLE: Felix's .emacs.d Config
+#+TITLE: My Personal Emacs Config
 
 * How
 Keep Emacs config simple and native.
-
-** Install
+** To build and install Emacs
 - To get source code, =git clone https:/git.savannah.gnu.org/git/emacs.git=
 - To build
   #+begin_src shell :dir "~/src/Emacs/emacs/"
@@ -17,20 +16,16 @@ Keep Emacs config simple and native.
     make
     make install
   #+end_src
-
-** Config
-- Clone .emacs.d to local
+** To config .emacs.d
+- Clone .emacs.d to local with submodues
   #+begin_src shell
     git clone --recurse-submodules -j8 https://github.com/meifatang/.emacs.d ~/.emacs.d
   #+end_src
-*Note*: The ~site-lisp~ directory contains submodues.
-And below is the content of my config.
-
 * early-init.el
-config early than init.el
+Config early than init.el
 [[file:early-init.el]]
-
 * Init
+Some common settings.
 ** Proxy
 #+begin_src emacs-lisp :tangle no
   ;;(setq url-proxy-services
@@ -41,7 +36,7 @@ config early than init.el
   (setq socks-server '("Default server" "127.0.0.1" 7890 5))
 #+end_src
 
-To set enviroment
+** Set enviroment
 #+begin_src emacs-lisp :tangle no
   (setenv "http_proxy" "http://127.0.0.1:7890")
   (setenv "https_proxy" "http://127.0.0.1:7890")
@@ -49,7 +44,7 @@ To set enviroment
   ;; (setenv "PATH" (concat "~/go/bin:" "~/bin:" "/usr/local/opt/ruby/bin:" "/usr/local/texlive/2021/bin/universal-darwin:" (getenv "PATH"))) ;; do not need
 #+end_src
 
-** Add folder to load path
+** Load path
 #+begin_src emacs-lisp
   (defun add-folder-to-load-path (folder)
     "Add folder and subdirs to the `load-path'."
@@ -63,25 +58,6 @@ To set enviroment
 
   (add-folder-to-load-path (expand-file-name "site-lisp" user-emacs-directory))
   (add-folder-to-load-path (expand-file-name "lisp" user-emacs-directory))
-#+end_src
-
-** Add tangle header and footer                                    :ARCHIVE:
-Need a better method.
-#+begin_src emacs-lisp :tangle no
-  (defun add-tangle-header-and-footer ()
-    (message "running in %s" (buffer-file-name))
-    (cond
-     ((f-ext? (buffer-file-name) "el")
-      (goto-char (point-min))
-      (insert ";;; init.el --- -*- lexical-binding: t -*-\n;;; Commentary:\n;;; Code:\n\n")
-      (goto-char (point-max))
-      (insert "\n\(provide 'init\)
-  ;;; init.el ends here\n"))
-     (t
-      nil))
-    (save-buffer))
-
-  (add-hook 'org-babel-post-tangle-hook 'add-tangle-header-and-footer)
 #+end_src
 
 ** Basic Config
@@ -113,6 +89,7 @@ Need a better method.
 #+end_src
 
 * built-in lisp/*
+The built-in package. Explian and config if neccessary.
 ** a
 *** abbrev
 *** align
@@ -467,7 +444,7 @@ To ignore =.DS_Store=
 *** yank-media
 
 * Package Managment
-Emacs's package managment is ugly. But I do not care.
+Third party package repos, location is =elpa=. And git based packages are add to submodues the location is =lisp/*=.
 #+begin_src emacs-lisp
   (require 'packages)
 
@@ -1127,5 +1104,3 @@ See [[*Package Managment][Package Managment]]
   (when (file-exists-p (expand-file-name "init-private.el" user-emacs-directory))
     (load-file (expand-file-name "init-private.el" user-emacs-directory)))
 #+end_src
-
-That is all. Bye!

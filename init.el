@@ -1,3 +1,7 @@
+;;; init.el --- -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 (defun add-folder-to-load-path (folder)
   "Add folder and subdirs to the `load-path'."
   (unless (member folder load-path)
@@ -305,3 +309,6 @@
 
 (when (file-exists-p (expand-file-name "init-private.el" user-emacs-directory))
   (load-file (expand-file-name "init-private.el" user-emacs-directory)))
+
+(provide 'init)
+;;; init.el ends here
