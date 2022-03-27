@@ -2,6 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
+(setq url-proxy-services
+      '(("no_proxy" . "^\\(localhost\\|10\\..*\\|192\\.168\\..*\\)")
+        ("http" . "127.0.0.1:7890")
+        ("https" . "127.0.0.1:7890")))
+(setq url-gateway-method 'socks)
+(setq socks-server '("Default server" "127.0.0.1" 7890 5))
+
 (defun add-folder-to-load-path (folder)
   "Add folder and subdirs to the `load-path'."
   (unless (member folder load-path)
@@ -14,9 +21,6 @@
 
 (add-folder-to-load-path (expand-file-name "site-lisp" user-emacs-directory))
 (add-folder-to-load-path (expand-file-name "lisp" user-emacs-directory))
-
-(setq user-full-name "Felix Tang"
-      user-mail-address "tangmifa@gmail.com")
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
@@ -59,8 +63,6 @@
 (dolist (package package-selected-packages)
   (unless (package-installed-p package)
     (package-install package)))
-
-(require 'auto-dark)
 
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
@@ -272,6 +274,10 @@
 (global-set-key (kbd "C-x j i") #'org-roam-node-insert)
 (global-set-key (kbd "C-x j t") #'org-roam-tag-add)
 
+(setq newsticker-url-list
+    '(("Emacs SE"
+       "https://emacs.stackexchange.com/feeds")))
+
 (setq epa-pinentry-mode 'loopback)
 (pinentry-start)
 
@@ -307,6 +313,8 @@
 (require 'geoip)
 
 (require 'felix)
+
+(load-theme 'felix t)
 
 (when (file-exists-p (expand-file-name "init-private.el" user-emacs-directory))
   (load-file (expand-file-name "init-private.el" user-emacs-directory)))

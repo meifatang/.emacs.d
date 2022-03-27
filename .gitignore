@@ -7,6 +7,7 @@ games/
 image-dired/
 lib/
 librime/
+newsticker/
 rime/
 straight/
 transient/
@@ -25,6 +26,7 @@ custom.el
 forge-database.sqlite
 init-private.el
 logview-cache.extmap
+network-security.data
 org-roam.db
 places
 prescient
