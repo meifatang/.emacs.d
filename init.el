@@ -9,6 +9,11 @@
 (setq url-gateway-method 'socks)
 (setq socks-server '("Default server" "127.0.0.1" 7890 5))
 
+(setenv "http_proxy" "http://127.0.0.1:7890")
+(setenv "https_proxy" "http://127.0.0.1:7890")
+(setenv "all_proxy" "socks5://127.0.0.1:7890")
+;; (setenv "PATH" (concat "~/go/bin:" "~/bin:" "/usr/local/opt/ruby/bin:" "/usr/local/texlive/2021/bin/universal-darwin:" (getenv "PATH"))) ;; do not need
+
 (defun add-folder-to-load-path (folder)
   "Add folder and subdirs to the `load-path'."
   (unless (member folder load-path)

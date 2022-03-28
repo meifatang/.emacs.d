@@ -1,3 +1,10 @@
+(defun update-tangmeifa-content ()
+  "Copy org/zh/* to src/Felix/tangmeifa.com/content"
+  (interactive)
+  (if (file-exists-p "~/src/Felix/tangmeifa.com/content/blog")    
+      (delete-directory "~/src/Felix/tangmeifa.com/content/blog"))
+  (copy-directory "~/org/zh" "~/src/Felix/tangmeifa.com/content/blog"))
+
 (defun open-with-vscode ()
   "Open current file with vscode."
   (interactive)
