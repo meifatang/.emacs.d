@@ -144,7 +144,7 @@ The built-in package. Explian and config if neccessary.
 *** dired-x
 *** dired
 To ignore =.DS_Store=
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (setq dired-omit-files "\\.DS_Store")
   (add-hook 'dired-mode-hook (lambda () (dired-omit-mode)))
   (add-hook 'dired-mode-hook 'auto-revert-mode)
@@ -731,6 +731,12 @@ https://github.com/kaiwk/leetcode.el
   (setq org-hide-emphasis-markers t)
 #+end_src
 
+** ob-ditta
+#+begin_src emacs-lisp
+  (setq ob-ditaa-jar-path "/usr/local/Cellar/ditaa/0.11.0_1/libexec/ditaa-0.11.0-standalone.jar"
+        org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.11.0_1/libexec/ditaa-0.11.0-standalone.jar")
+#+end_src
+
 ** Ob-x
 *** ob-async
 https://github.com/astahlman/ob-async
@@ -786,6 +792,7 @@ https://github.com/alf/ob-restclient.el
      (clojure . t)
      (sql . t)
      (js . t)
+     (gnuplot . t)
      (ditaa . t)
      (dot . t)
      (elixir . t)

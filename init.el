@@ -49,10 +49,6 @@
 
 (setq gc-cons-threshold 1000000000) ;; 100M
 
-(setq dired-omit-files "\\.DS_Store")
-(add-hook 'dired-mode-hook (lambda () (dired-omit-mode)))
-(add-hook 'dired-mode-hook 'auto-revert-mode)
-
 (require 'packages)
 
 (setq package-archives '(("org"   . "https://orgmode.org/elpa/")
@@ -155,6 +151,9 @@
 (setq org-startup-indented t)
 (setq org-hide-emphasis-markers t)
 
+(setq ob-ditaa-jar-path "/usr/local/Cellar/ditaa/0.11.0_1/libexec/ditaa-0.11.0-standalone.jar"
+      org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.11.0_1/libexec/ditaa-0.11.0-standalone.jar")
+
 (setq org-babel-python-command "python3")
 (setq org-babel-clojure-backend 'cider)
 
@@ -171,6 +170,7 @@
    (clojure . t)
    (sql . t)
    (js . t)
+   (gnuplot . t)
    (ditaa . t)
    (dot . t)
    (elixir . t)

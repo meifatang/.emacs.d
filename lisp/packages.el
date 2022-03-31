@@ -34,6 +34,7 @@
 				  format-all
 				  gif-screencast
 				  gist
+				  gnuplot
 				  go-mode
 				  google-this
 				  guix
