@@ -50,8 +50,8 @@
 				  jenkinsfile-mode
 				  julia-mode
 				  kubedoc
-				  kubel
-				  ;;kubernetes
+				  ;;kubel
+				  kubernetes
 				  leetcode
 				  logview
 				  lsp-mode

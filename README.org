@@ -708,7 +708,7 @@ https://github.com/pashky/restclient.el
 ** kubernetes
 https://github.com/kubernetes-el/kubernetes-el
 
-*** kubel
+*** +kubel+
 https://github.com/abrochard/kubel
 
 ** docker
