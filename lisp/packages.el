@@ -51,7 +51,7 @@
 				  julia-mode
 				  kubedoc
 				  kubel
-				  kubernetes
+				  ;;kubernetes
 				  leetcode
 				  logview
 				  lsp-mode
