@@ -1,9 +1,9 @@
 :PROPERTIES:
 :header-args:emacs-lisp: :tangle "~/.emacs.d/init.el" @@commnet: global tangle file@@
 :END:
-#+TITLE: My Personal Emacs Config
+#+TITLE: My Personal Emacs Configuration
 
-* How
+* How to +install+ build and config Emacs
 Keep Emacs config simple and native.
 ** To build and install Emacs
 - To get source code, =git clone https:/git.savannah.gnu.org/git/emacs.git=
@@ -17,16 +17,17 @@ Keep Emacs config simple and native.
     make install
   #+end_src
 ** To config .emacs.d
-- Clone .emacs.d to local with submodues
+- Clone .emacs.d to local, and with submodues
   #+begin_src shell
     git clone --recurse-submodules -j8 https://github.com/meifatang/.emacs.d ~/.emacs.d
   #+end_src
 * early-init.el
-Config early than init.el
+the Configuration early than init.el
 [[file:early-init.el]]
 * Init
-Some common settings.
+Common settings.
 ** Proxy
+Since I use OpenWrt to do all my network work. I do not need proxy setting again.
 #+begin_src emacs-lisp :tangle no
   (setq url-proxy-services
         '(("no_proxy" . "^\\(localhost\\|10\\..*\\|192\\.168\\..*\\)")
@@ -35,16 +36,18 @@ Some common settings.
   (setq url-gateway-method 'socks)
   (setq socks-server '("Default server" "127.0.0.1" 7890 5))
 #+end_src
-
 ** Set enviroment
+For PATH, and other enviroments.
 #+begin_src emacs-lisp :tangle no
   (setenv "http_proxy" "http://127.0.0.1:7890")
   (setenv "https_proxy" "http://127.0.0.1:7890")
   (setenv "all_proxy" "socks5://127.0.0.1:7890")
   ;; (setenv "PATH" (concat "~/go/bin:" "~/bin:" "/usr/local/opt/ruby/bin:" "/usr/local/texlive/2021/bin/universal-darwin:" (getenv "PATH"))) ;; do not need
 #+end_src
-
 ** Load path
+The custom package's PATH.
+- =site-lisp= for some code copy from internet or git repository.
+- =lisp= for my custom code.
 #+begin_src emacs-lisp
   (defun add-folder-to-load-path (folder)
     "Add folder and subdirs to the `load-path'."
@@ -59,7 +62,6 @@ Some common settings.
   (add-folder-to-load-path (expand-file-name "site-lisp" user-emacs-directory))
   (add-folder-to-load-path (expand-file-name "lisp" user-emacs-directory))
 #+end_src
-
 ** Basic Config
 #+begin_src emacs-lisp
   (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -84,9 +86,8 @@ Some common settings.
 
   (setq gc-cons-threshold 1000000000) ;; 100M
 #+end_src
-
 * built-in lisp/*
-The built-in package. Explian and config if neccessary.
+The built-in package. Explian, and config if neccessary.
 ** a
 *** abbrev
 *** align
@@ -102,7 +103,6 @@ The built-in package. Explian and config if neccessary.
 *** autoinsert
 *** autorevert
 *** avoid
-
 ** b
 *** battery
 *** bindings
@@ -110,7 +110,6 @@ The built-in package. Explian and config if neccessary.
 *** bs
 *** buff-menu
 *** button
-
 ** c
 *** calc/
 *** calculator
@@ -131,7 +130,6 @@ The built-in package. Explian and config if neccessary.
 *** cus-start
 *** cus-theme
 *** custom
-
 ** d
 *** dabbrev
 *** delim-col
@@ -149,7 +147,6 @@ To ignore =.DS_Store=
   (add-hook 'dired-mode-hook (lambda () (dired-omit-mode)))
   (add-hook 'dired-mode-hook 'auto-revert-mode)
 #+end_src
-
 *** dirtrack
 *** disp-table
 *** display-fill-column-indicator
@@ -162,7 +159,6 @@ To ignore =.DS_Store=
 *** dos-w32
 *** double
 *** dynnamic-setting
-
 ** e
 *** ebuff-menu
 *** echistory
@@ -188,7 +184,6 @@ To ignore =.DS_Store=
 *** eshell/
 *** expand
 *** ezimage
-
 ** f
 *** face-remap
 *** facemenu
@@ -216,11 +211,9 @@ To ignore =.DS_Store=
 *** forms
 *** frameset
 *** fringe
-
 ** g
 *** generic-x
 *** gnus/
-
 ** h
 *** help-at-pt
 *** help-fns
@@ -236,14 +229,16 @@ To ignore =.DS_Store=
 *** hl-line
 *** htmlfontify-loaddefs
 *** htmlfontify
-
 ** i
 *** ibuf-ext
 *** ibuf-macs
 *** ibuffer-loaddefs
 *** ibuffer
 *** icomplete
-*** ido
+*** ido                                                           :ARCHIVE:
+#+begin_src emacs-lisp :tangle no
+  (ido-ubiquitous-mode 1)
+#+end_src
 *** ielm
 *** iimage
 *** image/
@@ -260,19 +255,16 @@ To ignore =.DS_Store=
 *** international/
 *** isearch
 *** isearchb
-
 ** j
 *** jit-lock
 *** jka-cmpr-hook
 *** jka-compr
 *** json
 *** jsonrpc
-
 ** k
 *** kermit
 *** keymap
 *** kmacro
-
 ** l
 *** language/
 *** ldefs-boot
@@ -284,7 +276,6 @@ To ignore =.DS_Store=
 *** locate
 *** lpr
 *** ls-lisp
-
 ** m
 *** macros
 *** mail/
@@ -306,20 +297,17 @@ To ignore =.DS_Store=
 *** mpc
 *** msb
 *** mwhell
-
 ** n
 *** net/
 *** newcommnet
 *** notifications
 *** novice
 *** nxml/
-
 ** o
 *** obarray
 *** obsolete/
 *** org/
 *** outline
-
 ** p
 *** paren
 *** password-cache
@@ -343,7 +331,6 @@ To ignore =.DS_Store=
 *** ps-print-loaddefs
 *** ps-print
 *** ps-samp
-
 ** r
 *** recentf
 *** rect
@@ -356,7 +343,6 @@ To ignore =.DS_Store=
 *** rot13
 *** rtree
 *** ruler-mode
-
 ** s
 *** savehist
 *** saveplace
@@ -381,7 +367,6 @@ To ignore =.DS_Store=
 *** subdirs
 *** subr
 *** svg
-
 ** t
 *** t-mouse
 *** tab-bar
@@ -406,18 +391,15 @@ To ignore =.DS_Store=
 *** tree-widget
 *** tutorial
 *** type-break
-
 ** u
 *** uniquify
 *** url/
 *** userlock
-
 ** v
 *** vc/
 *** vcursor
 *** version
 *** view
-
 ** w
 *** w32-fns
 *** w32-vars
@@ -430,17 +412,14 @@ To ignore =.DS_Store=
 *** window
 *** winner
 *** woman
-
 ** x
 *** x-dnd
 *** xdg
 *** xml
 *** xt-mouse
 *** xwidget
-
 ** y
 *** yank-media
-
 * Package Managment
 Third party package repos, location is =elpa=. And git based packages are add to submodues the location is =lisp/*=.
 #+begin_src emacs-lisp
@@ -449,7 +428,8 @@ Third party package repos, location is =elpa=. And git based packages are add to
   (setq package-archives '(("org"   . "https://orgmode.org/elpa/")
                            ("melpa" . "https://melpa.org/packages/")
                            ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-                           ("gnu"   . "https://elpa.gnu.org/packages/")))
+                           ("gnu"   . "https://elpa.gnu.org/packages/")
+                           ))
 
   (package-initialize)
 
@@ -460,32 +440,24 @@ Third party package repos, location is =elpa=. And git based packages are add to
     (unless (package-installed-p package)
       (package-install package)))
 #+end_src
-
 * Interface
 ** auto-dark
 Copy from https://github.com/LionyxML/auto-dark-emacs
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (require 'auto-dark)
 #+end_src
-
 ** rainbow-delimiters
 https://github.com/Fanael/rainbow-delimiters
 #+begin_src emacs-lisp
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 #+end_src
-
 ** which-key
 https://github.com/justbur/emacs-which-key
 #+begin_src emacs-lisp
   (add-hook 'after-init-hook 'which-key-mode)
 #+end_src
-
-** ido                                                             :ARCHIVE:
-#+begin_src emacs-lisp :tangle no
-  (ido-ubiquitous-mode 1)
-#+end_src
-
 ** TODO ivy, swipper, counsel
+I do not really understand.
 https://github.com/abo-abo/swiper
 https://github.com/abo-abo/swiper/blob/f0b2bc618a84d25c0b3d05314d5d5693c27b2d3e/doc/ivy-help.org#key-bindings-for-single-selection
 #+begin_src emacs-lisp
@@ -517,22 +489,19 @@ https://github.com/abo-abo/swiper/blob/f0b2bc618a84d25c0b3d05314d5d5693c27b2d3e/
   (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 #+end_src
-
 *** ivy-rich
+Add commmand explain to the second column.
 https://github.com/Yevgnen/ivy-rich
 #+begin_src emacs-lisp
   (require 'ivy-rich)
   (ivy-rich-mode 1)
   (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
 #+end_src
-
 ** amx
 https://github.com/DarwinAwardWinner/amx
 To prioritizing your *most-used* commands in the completion list and showing keyboard shortcuts
-
 ** TODO google-this
 https://github.com/Malabarba/emacs-google-this
-
 ** TODO helpful
 https://github.com/Wilfred/helpful
 #+begin_src emacs-lisp
@@ -544,7 +513,6 @@ https://github.com/Wilfred/helpful
   (global-set-key (kbd "C-h F") #'helpful-function)
   (global-set-key (kbd "C-h C") #'helpful-command)
 #+end_src
-
 * Navigation
 ** TODO jump between windows
 * Visual
@@ -555,18 +523,15 @@ https://github.com/hrehfeld/emacs-smart-hungry-delete
   (global-set-key (kbd "<backspace>") 'smart-hungry-delete-backward-char)
   (global-set-key (kbd "C-d") 'smart-hungry-delete-forward-char)
 #+end_src
-
 * Editing
 ** expand-region
 https://github.com/magnars/expand-region.el
 #+begin_src emacs-lisp
   (global-set-key (kbd "C-=") 'er/expand-region)
 #+end_src
-
 ** browse-kill-ring
 https://github.com/browse-kill-ring/browse-kill-ring
 Is Good 
-
 * Project
 ** projectile
 https://github.com/bbatsov/projectile
@@ -574,14 +539,11 @@ https://github.com/bbatsov/projectile
   (projectile-mode +1)
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 #+end_src
-
 * Version Control
 ** magit
 https://github.com/magit/magit
-
 ** forge
 https://github.com/magit/forge
-
 * Files
 ** systemd-mode
 ** toml-mode
@@ -591,55 +553,43 @@ https://github.com/k1LoW/emacs-ansible
 #+begin_src emacs-lisp
   (add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
 #+end_src
-
 ** csv-mode
 https://git.savannah.gnu.org/cgit/emacs/elpa.git/?h=externals/csv-mode
 #+begin_src emacs-lisp
   (add-hook 'csv-mode-hook 'csv-align-mode)
 #+end_src
-
 ** nginx-mode
 https://github.com/ajc/nginx-mode
 #+begin_src emacs-lisp
   (add-to-list 'auto-mode-alist '("/nginx/sites-\\(?:available\\|enabled\\)/" . nginx-mode))
 #+end_src
-
-** jenkinsfile-mode
+** jenkinsfile-mode                                                :ARCHIVE:
 https://github.com/john2x/jenkinsfile-mode
-
 ** terraform-mode
 https://github.com/emacsorphanage/terraform-mode
-
 ** dockerfile-mode
 https://github.com/spotify/dockerfile-mode
 #+begin_src emacs-lisp
   (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 #+end_src
-
 ** docker-compose-mode
 https://github.com/meqif/docker-compose-mode
-
 * Languages
 ** go-mode
 https://github.com/dominikh/go-mode.el
-
 ** rust-mode
 https://github.com/rust-lang/rust-mode
-
 ** julia-mode
 https://github.com/JuliaEditorSupport/julia-emacs
-
 ** slime
 For Common lisp
 #+begin_src emacs-lisp
   (setq inferior-lisp-program "/usr/local/bin/sbcl")
   (setq slime-contribs '(slime-fancy))
 #+end_src
-
 ** haskell-mode
 ** erlang
 ** elixir-mode
-
 * Programming
 ** yasnippet, yasnippet-snippets, yatemplate
 https://github.com/joaotavora/yasnippet
@@ -655,7 +605,6 @@ https://github.com/joaotavora/yasmate
 
   (add-hook 'after-init-hook 'yas-global-mode)
 #+end_src
-
 ** lsp-mode
 https://github.com/joaotavora/yasmate
 #+begin_src emacs-lisp
@@ -663,22 +612,18 @@ https://github.com/joaotavora/yasmate
   (add-hook 'sh-mode-hook #'lsp)
   (add-hook 'python-mode #'lsp)
 #+end_src
-
 *** TODO dap-mode
 https://github.com/emacs-lsp/dap-mode
-
 ** company
 https://github.com/company-mode/company-mode
 #+begin_src emacs-lisp
   (add-hook 'after-init-hook 'global-company-mode)
 #+end_src
-
 ** flycheck
 https://github.com/flycheck/flycheck
 #+begin_src emacs-lisp :tangle no
  (global-flycheck-mode)
 #+end_src
-
 * Shell
 ** exec-path-from-shell
 https://github.com/purcell/exec-path-from-shell
@@ -687,36 +632,26 @@ https://github.com/purcell/exec-path-from-shell
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize))
 #+end_src
-
 * ESS
 * DevOps
 ** emamux
 https://github.com/emacsorphanage/emamux
-
 ** edbi
 https://github.com/kiwanami/emacs-edbi
-
 ** pass
 https://orgmode.org/manual/Tracking-your-habits.html
-
 ** logview
 https://github.com/doublep/logview
-
 ** restclient
 https://github.com/pashky/restclient.el
-
 ** kubernetes
 https://github.com/kubernetes-el/kubernetes-el
-
-*** +kubel+
+*** kubel
 https://github.com/abrochard/kubel
-
 ** docker
 https://github.com/Silex/docker.el
-
 ** jenkins
 https://github.com/rmuslimov/jenkins.el
-
 * Internet
 ** 0x0
 ** leetcode
@@ -725,57 +660,42 @@ https://github.com/kaiwk/leetcode.el
   (setq leetcode-save-solutions t)
   (setq leetcode-directory "~/leetcode")
 #+end_src
-
 * Org
 ** Org
 #+begin_src emacs-lisp
   (setq org-startup-indented t)
   (setq org-hide-emphasis-markers t)
 #+end_src
-
 ** ob-ditta
 #+begin_src emacs-lisp
   (setq ob-ditaa-jar-path "/usr/local/Cellar/ditaa/0.11.0_1/libexec/ditaa-0.11.0-standalone.jar"
         org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.11.0_1/libexec/ditaa-0.11.0-standalone.jar")
 #+end_src
-
 ** Ob-x
 *** ob-async
 https://github.com/astahlman/ob-async
-
 *** ob-go
 https://github.com/ali2210/emacs--ob-go
-
 *** ob-rust
 https://github.com/zweifisch/ob-rust
-
 *** ob-browser
 https://github.com/krisajenkins/ob-browser
-
 *** ob-dart
 https://github.com/mzimmerm/ob-dart
-
 *** ob-graphql
 https://github.com/jdormit/ob-graphql
-
 *** ob-http
 https://github.com/zweifisch/ob-http
-
 *** ob-ipython
 https://github.com/gregsexton/ob-ipython
-
 *** ob-mongo
 https://github.com/krisajenkins/ob-mongo
-
 *** ob-tmux
 https://github.com/ahendriksen/ob-tmux
-
 *** ob-uart
 https://github.com/andrmuel/ob-uart
-
 *** ob-restclient
 https://github.com/alf/ob-restclient.el
-
 ** org-babel
 #+begin_src emacs-lisp
   (setq org-babel-python-command "python3")
@@ -808,7 +728,6 @@ https://github.com/alf/ob-restclient.el
      (ruby . t)
      (rust . t)))
 #+end_src
-
 ** org-todo
 #+begin_src emacs-lisp
   (setq org-todo-keywords
@@ -819,7 +738,6 @@ https://github.com/alf/ob-restclient.el
   (setq org-log-done 'time)
   (setq org-log-done 'note)
 #+end_src
-
 ** org-capture
 #+begin_src emacs-lisp
   (setq org-capture-templates
@@ -877,7 +795,6 @@ https://github.com/alf/ob-restclient.el
 
   (global-set-key (kbd "C-c c") #'org-capture)
 #+end_src
-
 *** key
 *** description
 *** type
@@ -886,7 +803,6 @@ https://github.com/alf/ob-restclient.el
 **** checkitem
 **** table-line
 **** plain
-
 *** target
 **** file
 **** id
@@ -900,9 +816,7 @@ https://github.com/alf/ob-restclient.el
 **** file+function
 **** clock
 **** function
-
 *** template
-
 ** org-agenda
 #+begin_src emacs-lisp
   (setq org-agenda-files '("~/org/felix/gtd.org"
@@ -914,12 +828,8 @@ https://github.com/alf/ob-restclient.el
 
   (global-set-key (kbd "C-c a") #'org-agenda)
 #+end_src
-
 ** TODO org-contrib
 https://git.sr.ht/~bzg/org-contrib
-#+begin_src emacs-lisp
-#+end_src
-
 ** org2ctex
 https://github.com/tumashu/org2ctex
 _It take too long to load. do NOT tangle unless it is needed._
@@ -927,12 +837,10 @@ _It take too long to load. do NOT tangle unless it is needed._
   (require 'org2ctex)
   (org2ctex-toggle t)
 #+end_src
-
 *** alternative method
 #+begin_src emacs-lisp
   (setq org-latex-pdf-process '("xelatex -interaction nonstopmode %f" "xelatex -interaction nonstopmode %f"))
 #+end_src
-
 ** org-roam
 https://github.com/org-roam/org-roam
 #+begin_src emacs-lisp
@@ -955,13 +863,10 @@ https://github.com/org-roam/org-roam
   (global-set-key (kbd "C-x j i") #'org-roam-node-insert)
   (global-set-key (kbd "C-x j t") #'org-roam-tag-add)
 #+end_src
-
 *** org-roam-ui
 https://github.com/org-roam/org-roam-ui
-
 ** org-ref
 https://github.com/jkitchin/org-ref
-
 * Miscellaneous
 ** Newsticker (built-in)
 #+begin_src emacs-lisp
@@ -974,7 +879,6 @@ https://github.com/jkitchin/org-ref
   (setq epa-pinentry-mode 'loopback)
   (pinentry-start)
 #+end_src
-
 ** hledger
 https://gist.github.com/simonmichael/92aade653065ed9c9e215d03651b0baa
 
@@ -983,7 +887,6 @@ https://gist.github.com/simonmichael/92aade653065ed9c9e215d03651b0baa
   (add-to-list 'auto-mode-alist '("\\.journal\\'" . hledger-mode))
   (setq hledger-jfile "~/org/felix/finance/finance.journal")
 #+end_src
-
 ** vterm
 ** slack
 ** bongo
@@ -992,7 +895,6 @@ https://gist.github.com/simonmichael/92aade653065ed9c9e215d03651b0baa
 "https://pinecast.com/feed/emacscast"
 "https://liuyandong.com/feed/podcast"  
 #+end_src
-
 ** rime
 https://github.com/DogLooksGood/emacs-rime
 #+begin_src emacs-lisp
@@ -1000,7 +902,6 @@ https://github.com/DogLooksGood/emacs-rime
   (setq rime-librime-root "~/.emacs.d/librime/dist")
   (setq rime-user-data-dir "~/Library/Rime")
 #+end_src
-
 ** TODO telega
 #+begin_src emacs-lisp
   ;; (setq telega-chat-show-avatars nil)
@@ -1009,49 +910,38 @@ https://github.com/DogLooksGood/emacs-rime
   ;; (setq telega-active-locations-show-avatars nil)
   ;; (setq telega-company-username-show-avatars nil)
 
-  (setq telega-proxies (list '(:server "127.0.0.1" :port 7890 :enable t
-                                       :type (:@type "proxyTypeSocks5"))))
+  ;;(setq telega-proxies (list '(:server "127.0.0.1" :port 7890 :enable t
+  ;;                                     :type (:@type "proxyTypeSocks5"))))
 #+end_src
-
 ** guix
 https://notabug.org/alezost/emacs-guix
-
 ** nix
 *** nix-mode
 https://github.com/NixOS/nix-mode
-
 *** nix-env-install
 https://github.com/akirak/nix-env-install
-
 *** nix-buffer
 https://github.com/shlevy/nix-buffer
-
 ** midnight-mode
 #+begin_src emacs-lisp
   (midnight-mode)
 #+end_src
-
 ** restart-emacs
 https://github.com/iqbalansari/restart-emacs
-
 * *site-lisp/*
 Package that is not from ELPA or MELPA
-
 ** color-rg
 https://github.com/manateelazycat/color-rg.git
 #+begin_src emacs-lisp
   (require 'color-rg)
 #+end_src
-
 ** grammatical-edit
 https://github.com/manateelazycat/grammatical-edit
-
 ** sudo-edit
 https://github.com/nflath/sudo-edit.git
 #+begin_src emacs-lisp
   (require 'sudo-edit)
 #+end_src
-
 ** thing-edit
 https://github.com/manateelazycat/thing-edit
 #+begin_src emacs-lisp
@@ -1065,13 +955,11 @@ Install Require: =pcache=
 #+begin_src emacs-lisp
   (require 'ecloud)
 #+end_src
-
 ** emacs-password-generator
 https://github.com/vandrlexay/emacs-password-genarator.git
 #+begin_src emacs-lisp
   (require 'password-generator)
 #+end_src
-
 ** awesome-tray
 Not realy good.
 https://github.com/manateelazycat/awesome-tray.git
@@ -1079,7 +967,6 @@ https://github.com/manateelazycat/awesome-tray.git
   (require 'awesome-tray)
   (awesome-tray-mode 1)
 #+end_src
-
 * lisp/
 ** auto-save.el
 Inspired from https://manateelazycat.github.io/emacs/2016/03/16/auto-save.html
@@ -1088,29 +975,24 @@ Inspired from https://manateelazycat.github.io/emacs/2016/03/16/auto-save.html
   (auto-save-enable)
   (setq auto-save-slient t)
 #+end_src
-
 ** geoip.el
 Copy from https://github.com/NicolasPetton/emacs.d/blob/master/local/geoip.el
 #+begin_src emacs-lisp
   (require 'geoip)
 #+end_src
-
 ** felix.el
 #+begin_src emacs-lisp
   (require 'felix)
 #+end_src
-
 ** packages.el
 See [[*Package Managment][Package Managment]]
-
 * The End
-** TODO load-theme felix theme
-@@commnet: personal felix-theme@@
+** TODO load-theme felix theme                                     :ARCHIVE:
+personal felix-theme
 [[file:lisp/felix-theme.el]]
 #+begin_src emacs-lisp
   (load-theme 'felix t)
 #+end_src
-
 ** Private
 [[file:init-private.el]]
 #+begin_src emacs-lisp

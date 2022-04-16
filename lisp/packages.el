@@ -47,10 +47,10 @@
 				  ivy
 				  ivy-rich
 				  jenkins
-				  jenkinsfile-mode
+				  ;;jenkinsfile-mode
 				  julia-mode
+				  k8s-mode
 				  kubedoc
-				  ;;kubel
 				  kubernetes
 				  leetcode
 				  logview
@@ -78,7 +78,7 @@
 				  ob-uart
 				  org-bullets
 				  org-contrib
-				  org-modern
+				  ;;org-modern
 				  org-noter
 				  org-noter-pdftools
 				  org-pdftools

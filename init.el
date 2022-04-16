@@ -42,7 +42,8 @@
 (setq package-archives '(("org"   . "https://orgmode.org/elpa/")
                          ("melpa" . "https://melpa.org/packages/")
                          ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-                         ("gnu"   . "https://elpa.gnu.org/packages/")))
+                         ("gnu"   . "https://elpa.gnu.org/packages/")
+                         ))
 
 (package-initialize)
 
@@ -52,6 +53,8 @@
 (dolist (package package-selected-packages)
   (unless (package-installed-p package)
     (package-install package)))
+
+(require 'auto-dark)
 
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
@@ -244,8 +247,6 @@
 
 (global-set-key (kbd "C-c a") #'org-agenda)
 
-
-
 (setq org-latex-pdf-process '("xelatex -interaction nonstopmode %f" "xelatex -interaction nonstopmode %f"))
 
 (setq org-roam-directory "~/org")
@@ -288,8 +289,8 @@
 ;; (setq telega-active-locations-show-avatars nil)
 ;; (setq telega-company-username-show-avatars nil)
 
-(setq telega-proxies (list '(:server "127.0.0.1" :port 7890 :enable t
-                                     :type (:@type "proxyTypeSocks5"))))
+;;(setq telega-proxies (list '(:server "127.0.0.1" :port 7890 :enable t
+;;                                     :type (:@type "proxyTypeSocks5"))))
 
 (midnight-mode)
 
@@ -306,8 +307,6 @@
 (require 'geoip)
 
 (require 'felix)
-
-(load-theme 'felix t)
 
 (when (file-exists-p (expand-file-name "init-private.el" user-emacs-directory))
   (load-file (expand-file-name "init-private.el" user-emacs-directory)))
