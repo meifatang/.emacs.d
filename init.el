@@ -304,6 +304,10 @@
 
 (require 'password-generator)
 
+(require 'auto-save)
+(auto-save-enable)
+(setq auto-save-slient t)
+
 (require 'geoip)
 
 (require 'felix)
