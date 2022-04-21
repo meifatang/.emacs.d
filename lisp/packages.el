@@ -55,6 +55,7 @@
 				  leetcode
 				  logview
 				  lsp-mode
+				  lua-mode
 				  magit
 				  meow
 				  nginx-mode
