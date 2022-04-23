@@ -125,4 +125,4 @@
 				  yasnippet-snippets
 				  yatemplate))
 
-(provide 'packages)
+(provide 'felix-packages)

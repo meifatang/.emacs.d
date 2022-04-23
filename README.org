@@ -1,10 +1,8 @@
-:PROPERTIES:
-:header-args:emacs-lisp: :tangle "~/.emacs.d/init.el" @@commnet: global tangle file@@
-:END:
 #+TITLE: My Personal Emacs Configuration
 
-* How to +install+ build and config Emacs
+* To Install or Build, and Config Emacs
 Keep Emacs config simple and native.
+
 ** To build and install Emacs
 - To get source code, =git clone https:/git.savannah.gnu.org/git/emacs.git=
 - To build
@@ -16,19 +14,19 @@ Keep Emacs config simple and native.
     make
     make install
   #+end_src
+  
 ** To config .emacs.d
 - Clone .emacs.d to local, and with submodues
   #+begin_src shell
     git clone --recurse-submodules -j8 https://github.com/meifatang/.emacs.d ~/.emacs.d
   #+end_src
-* early-init.el
-the Configuration early than init.el
-[[file:early-init.el]]
+
 * Init
 Common settings.
+
 ** Proxy
 Since I use OpenWrt to do all my network work. I do not need proxy setting again.
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (setq url-proxy-services
         '(("no_proxy" . "^\\(localhost\\|10\\..*\\|192\\.168\\..*\\)")
           ("http" . "127.0.0.1:7890")
@@ -36,14 +34,16 @@ Since I use OpenWrt to do all my network work. I do not need proxy setting again
   (setq url-gateway-method 'socks)
   (setq socks-server '("Default server" "127.0.0.1" 7890 5))
 #+end_src
+
 ** Set enviroment
 For PATH, and other enviroments.
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (setenv "http_proxy" "http://127.0.0.1:7890")
   (setenv "https_proxy" "http://127.0.0.1:7890")
   (setenv "all_proxy" "socks5://127.0.0.1:7890")
   ;; (setenv "PATH" (concat "~/go/bin:" "~/bin:" "/usr/local/opt/ruby/bin:" "/usr/local/texlive/2021/bin/universal-darwin:" (getenv "PATH"))) ;; do not need
 #+end_src
+
 ** Load path
 The custom package's PATH.
 - =site-lisp= for some code copy from internet or git repository.
@@ -62,6 +62,7 @@ The custom package's PATH.
   (add-folder-to-load-path (expand-file-name "site-lisp" user-emacs-directory))
   (add-folder-to-load-path (expand-file-name "lisp" user-emacs-directory))
 #+end_src
+
 ** Basic Config
 #+begin_src emacs-lisp
   (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -86,6 +87,7 @@ The custom package's PATH.
 
   (setq gc-cons-threshold 1000000000) ;; 100M
 #+end_src
+
 * built-in lisp/*
 The built-in package. Explian, and config if neccessary.
 ** a
@@ -142,7 +144,7 @@ The built-in package. Explian, and config if neccessary.
 *** dired-x
 *** dired
 To ignore =.DS_Store=
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (setq dired-omit-files "\\.DS_Store")
   (add-hook 'dired-mode-hook (lambda () (dired-omit-mode)))
   (add-hook 'dired-mode-hook 'auto-revert-mode)
@@ -236,7 +238,7 @@ To ignore =.DS_Store=
 *** ibuffer
 *** icomplete
 *** ido                                                           :ARCHIVE:
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (ido-ubiquitous-mode 1)
 #+end_src
 *** ielm
@@ -440,6 +442,7 @@ Third party package repos, location is =elpa=. And git based packages are add to
     (unless (package-installed-p package)
       (package-install package)))
 #+end_src
+
 * Interface
 ** auto-dark
 Copy from https://github.com/LionyxML/auto-dark-emacs
@@ -535,7 +538,7 @@ Is Good
 * Project
 ** projectile
 https://github.com/bbatsov/projectile
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (projectile-mode +1)
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 #+end_src
@@ -621,7 +624,7 @@ https://github.com/company-mode/company-mode
 #+end_src
 ** flycheck
 https://github.com/flycheck/flycheck
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
  (global-flycheck-mode)
 #+end_src
 * Shell
@@ -832,8 +835,7 @@ https://github.com/alf/ob-restclient.el
 https://git.sr.ht/~bzg/org-contrib
 ** org2ctex
 https://github.com/tumashu/org2ctex
-_It take too long to load. do NOT tangle unless it is needed._
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (require 'org2ctex)
   (org2ctex-toggle t)
 #+end_src
@@ -855,8 +857,14 @@ https://github.com/org-roam/org-roam
                (window-width . 0.33)
                (window-height . fit-window-to-buffer)))
 
+  (setq org-roam-node-display-template
+      (concat "${title:*} "
+              (propertize "${tags:10}" 'face 'org-tag)))
+
   (org-roam-db-autosync-mode)
   ;;(add-hook 'org-roam-find-file-hook 'org-roam-buffer)
+
+  (require 'org-roam-export)
 
   (global-set-key (kbd "C-x j r") #'org-roam-node-random)
   (global-set-key (kbd "C-x j f") #'org-roam-node-find)
@@ -867,6 +875,10 @@ https://github.com/org-roam/org-roam
 https://github.com/org-roam/org-roam-ui
 ** org-ref
 https://github.com/jkitchin/org-ref
+** publish to static html
+#+begin_src emacs-lisp
+  (require 'felix-publish)
+#+end_src
 * Miscellaneous
 ** Newsticker (built-in)
 #+begin_src emacs-lisp
@@ -963,7 +975,7 @@ https://github.com/vandrlexay/emacs-password-genarator.git
 ** awesome-tray
 Not realy good.
 https://github.com/manateelazycat/awesome-tray.git
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (require 'awesome-tray)
   (awesome-tray-mode 1)
 #+end_src
