@@ -41,7 +41,25 @@
 	 :html-doctype "html5"
 	 :language "zh-CN"
 	 :html-head-include-default-style nil
-	 :html-head "<link rel=\"stylesheet\" href=\"./style.css\" type=\"text/css\">")
+	 :html-head "<link rel=\"stylesheet\" href=\"./style.css\" type=\"text/css\">"
+	 :html-preamble "<header>
+  <nav>
+    <a href=\"./index.html\">Home</a>
+    <a href=\"./theindex.html\">Articles</a>
+    <a href=\"./about.html\">About</a>
+  </nav>
+</header>
+<hr/>"
+	 :html-postamble "<footer>
+  <div class=\"copyright-container\">
+    <div class=\"copyright\">
+      版权所有 &copy; 2022 汤美法
+    </div>
+  </div>
+  <div class=\"generated\">
+    使用 %c 构建</a>
+  </div>
+</footer>")
 	("org-zh-static"
          :base-directory "~/org-zh/static/"
          :base-extension "css\\|el"
