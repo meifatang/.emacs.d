@@ -10,9 +10,9 @@
 [submodule "site-lisp/thing-edit"]
 	path = site-lisp/thing-edit
 	url = https://github.com/manateelazycat/thing-edit
-[submodule "site-lisp/ecloud"]
-	path = site-lisp/ecloud
-	url = https://github.com/meifatang/ecloud.git
 [submodule "site-lisp/emacs-password-genarator"]
 	path = site-lisp/emacs-password-genarator
 	url = https://github.com/vandrlexay/emacs-password-genarator.git
+[submodule "lisp/ecloud"]
+	path = lisp/ecloud
+	url = https://github.com/meifatang/ecloud.git
