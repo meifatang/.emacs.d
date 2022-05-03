@@ -1,8 +1,33 @@
-;;; init.el --- -*- lexical-binding: t -*-
-;;; Commentary:
-;;; Code:
+;;; init.el --- Felix's Emacs config -*- lexical-binding: t -*-
 
-;; load-path
+;; Author: Felix M. Tang
+;; Maintainer: Felix M. Tang
+;; Version: 0.0.5
+;; Package-Requires:
+;; Homepage: https://github.com/meifatang/.emacs.d/
+;; Keywords: felix emacs init
+
+
+;; This file is not part of GNU Emacs
+
+;; This file is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation; either version 3, or (at your option)
+;; any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; For a full copy of the GNU General Public License
+;; see <http://www.gnu.org/licenses/>.
+
+
+;;; Commentary:
+;; My Emacs Config
+
+;;; Code:
 (defun add-folder-to-load-path (folder)
   "Add folder and subdirs to the `load-path'."
   (unless (member folder load-path)
@@ -16,56 +41,49 @@
 (add-folder-to-load-path (expand-file-name "site-lisp" user-emacs-directory))
 (add-folder-to-load-path (expand-file-name "lisp" user-emacs-directory))
 
-;; custom custom.el file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
-;; startup buffer and scratch
 (setq inhibit-startup-message t)
-(setq initial-scratch-message "")
 
-;; backup files
-(setq make-backup-files nil)
-(setq auto-save-default nil)
+(setq backup-directory-alist
+      `(("." . ,(concat user-emacs-directory "backups"))))
 
-;; ui
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (blink-cursor-mode -1)
 
-;; warp
 (global-visual-line-mode)
 
-;; enable server and midnight mode
 (server-start)
 (midnight-mode)
-;; fullscreen shortcut
-(global-set-key (kbd "C-s-f") #'toggle-frame-fullscreen)
-;; define gc
-(setq gc-cons-threshold 1000000000) ;; 100M
 
-;; Package management
-(add-hook 'after-init-hook (lambda () (progn (require 'packages))))
-(require 'felix-packages)
-(setq package-archives '(("org"   . "https://orgmode.org/elpa/")
-                         ("melpa" . "https://melpa.org/packages/")
-                         ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-                         ("gnu"   . "https://elpa.gnu.org/packages/")))
-(package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
-(dolist (package package-selected-packages)
-  (unless (package-installed-p package)
-    (package-install package)))
+(setq gc-cons-threshold 10000000000)
 
-;; Require other config files
-(require 'felix-init)
+(add-hook 'before-save-hook 'org-update-all-dblocks)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+;; (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 
+(require 'felix-package)
+(require 'felix-theme)
+
+(require 'felix)
 (require 'felix-ivy)
-
+(require 'felix-meow)
 (require 'felix-org)
-(require 'felix-publish)
+(require 'felix-geoip)
+(require 'felix-wisdom)
+(require 'ecloud)
 
-;; init-private.el
+(require 'sudo-edit)
+(require 'color-rg)
+(require 'thing-edit)
+(require 'password-generator)
+
+(require 'felix-keybindings)
+
+(setq initial-scratch-message
+      (format ";; %s\n\n" (adafruit-wisdom-select)))
+
 (when (file-exists-p (expand-file-name "init-private.el" user-emacs-directory))
   (load-file (expand-file-name "init-private.el" user-emacs-directory)))
 

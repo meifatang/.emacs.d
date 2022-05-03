@@ -43,4 +43,4 @@
   (interactive)
   (run-with-idle-timer auto-save-idle t #'auto-save-buffers))
 
-(provide 'auto-save)
+(provide 'felix-auto-save)

@@ -16,3 +16,6 @@
 [submodule "lisp/ecloud"]
 	path = lisp/ecloud
 	url = https://github.com/meifatang/ecloud.git
+[submodule "lisp/org-cv"]
+	path = lisp/org-cv
+	url = https://gitlab.com/Titan-C/org-cv.git

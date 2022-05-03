@@ -1,8 +1,11 @@
+(require 'package)
+
 (setq package-selected-packages '(0x0
 				  amx
 				  ansible
 				  applescript-mode
 				  auctex
+				  auto-dark
 				  bluetooth
 				  bongo
 				  browse-at-remote
@@ -58,6 +61,7 @@
 				  lua-mode
 				  magit
 				  meow
+				  modus-themes
 				  nginx-mode
 				  nix-buffer
 				  nix-env-install
@@ -83,6 +87,7 @@
 				  org-noter
 				  org-noter-pdftools
 				  org-pdftools
+				  org-pomodoro
 				  org-ref
 				  org-roam
 				  org-roam-ui
@@ -101,6 +106,7 @@
 				  rime
 				  robot-mode
 				  rust-mode
+				  shell-pop
 				  slack
 				  slime
 				  smart-hungry-delete
@@ -125,4 +131,18 @@
 				  yasnippet-snippets
 				  yatemplate))
 
-(provide 'felix-packages)
+(setq package-archives '(("org"   . "https://orgmode.org/elpa/")
+                         ("melpa" . "https://melpa.org/packages/")
+                         ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+                         ("gnu"   . "https://elpa.gnu.org/packages/")))
+
+(package-initialize)
+
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(dolist (package package-selected-packages)
+  (unless (package-installed-p package)
+    (package-install package)))
+
+(provide 'felix-package)

@@ -59,5 +59,5 @@ the host."
 	(message ip)
       ip)))
 
-(provide 'geoip)
+(provide 'felix-geoip)
 ;;; geoip.el ends here

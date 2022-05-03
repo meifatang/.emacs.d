@@ -20,6 +20,7 @@ request/
 .last-package-update-day
 .lsp-session-v1
 .org-id-locations
+adafruit-wisdom.cache
 amx-items
 bookmarks
 custom.el
