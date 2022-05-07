@@ -2,9 +2,9 @@
 (setq modus-themes-org-blocks 'gray-background)
 
 ;; (setq modus-themes-headings
-;;       '((1 . (background))
-;;         (2 . (background))
-;;         (3 . (background))
+;;       '((1 . (1.1))
+;;         (2 . (1.1))
+;;         (3 . (1.1))
 ;; 	(t . (monochrome))))
 
 ;; (load-theme 'modus-operandi t)
