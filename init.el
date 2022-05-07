@@ -80,6 +80,7 @@
 (require 'password-generator)
 
 (require 'felix-keybindings)
+(require 'felix-auto-save)
 
 (setq initial-scratch-message
       (format ";; %s\n\n" (adafruit-wisdom-select)))

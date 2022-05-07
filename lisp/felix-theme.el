@@ -1,11 +1,11 @@
 (setq modus-themes-mode-line '(borderless))
 (setq modus-themes-org-blocks 'gray-background)
 
-(setq modus-themes-headings
-      '((1 . (background))
-        (2 . (background))
-        (3 . (background))
-	(t . (monochrome))))
+;; (setq modus-themes-headings
+;;       '((1 . (background))
+;;         (2 . (background))
+;;         (3 . (background))
+;; 	(t . (monochrome))))
 
 ;; (load-theme 'modus-operandi t)
 

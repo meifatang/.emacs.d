@@ -67,6 +67,7 @@
 				  nix-env-install
 				  nix-mode
 				  nndiscourse
+				  nyan-mode
 				  ob-async
 				  ob-browser
 				  ob-dart
