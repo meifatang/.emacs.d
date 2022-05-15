@@ -84,6 +84,9 @@
 (require 'felix-auto-save)
 (require 'felix-functions)
 
+(advice-add 'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
+(advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update)
+
 (setq initial-scratch-message
       (format ";; %s\n\n" (adafruit-wisdom-select)))
 

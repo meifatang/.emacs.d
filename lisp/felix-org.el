@@ -182,47 +182,9 @@
          :base-extension "css\\|el"
          :publishing-directory "~/org/public_html"
          :publishing-function org-publish-attachment)
-	
-        ("org-zh"
-         :base-directory "~/org-zh/"
-	 :publishing-function org-html-publish-to-html
-         :publishing-directory "~/org-zh/public_html"
-	 :auto-sitemap t
-	 :sitemap-title "网站地图"
-	 :sitemap-sort-files anti-chronologically
-	 ;;:sitemap-format-entry felix/sitemap-format-entry
-	 :with-toc nil
-	 :html-postamble nil
-	 :html-doctype "html5"
-	 :language "zh-Hans"
-	 :html-head-include-default-style nil
-	 :html-head "<link rel=\"stylesheet\" media=\"all\" href=\"https://cdnjs.cloudflare.com/ajax/libs/Han/3.2.7/han.min.css\">
-<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">"
-	 :html-preamble "<header>
-  <nav>
-    <a href=\"index.html\">主页</a>
-    <a href=\"about.html\">关于</a>
-    <a href=\"rss.xml\" id=\"rss\">订阅</a>
-  </nav>
-</header>"
-	 :html-postamble "<script>
-</script>
-<footer>
-  <div class=\"copyright-container\">
-    <div class=\"copyright\">
-      版权所有 &copy; 2022 汤美法，
-      使用 %c 生成。
-  </div>
-</footer>")
-	
-	("org-zh-static"
-         :base-directory "~/org-zh/static/"
-         :base-extension "css\\|el"
-         :publishing-directory "~/org-zh/public_html"
-         :publishing-function org-publish-attachment)
 
 	("c-c.dev" :components ("org" "org-static"))
-	("tangmeifa.com" :components ("org-zh" "org-zh-static"))))
+	("tangmeifa.com" :components ("org" "org-static"))))
 
 (provide 'felix-org)
 ;;; felix-org ends here
