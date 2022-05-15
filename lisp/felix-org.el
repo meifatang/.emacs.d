@@ -85,7 +85,7 @@
          "* %?\nEntered on $U\n  %i  %a"
          :tree-type month)))
 
-(setq org-agenda-files '("~/org/life/gtd.org"))
+(add-to-list 'org-agenda-files "~/org/life/gtd.org")
 
 (setq org-latex-pdf-process '("xelatex -interaction nonstopmode %f" "xelatex -interaction nonstopmode %f"))
 

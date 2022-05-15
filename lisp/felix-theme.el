@@ -7,8 +7,6 @@
 ;;         (3 . (1.1))
 ;; 	(t . (monochrome))))
 
-;; (load-theme 'modus-operandi t)
-
 (require 'auto-dark)
 (setq auto-dark--light-theme 'modus-operandi)
 (setq auto-dark--dark-theme 'modus-vivendi)

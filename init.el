@@ -51,6 +51,7 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (blink-cursor-mode -1)
+;; (tab-bar-mode -1)
 
 (global-visual-line-mode)
 
@@ -81,6 +82,7 @@
 
 (require 'felix-keybindings)
 (require 'felix-auto-save)
+(require 'felix-functions)
 
 (setq initial-scratch-message
       (format ";; %s\n\n" (adafruit-wisdom-select)))

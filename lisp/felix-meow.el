@@ -24,6 +24,7 @@
 
    '("f" . org-roam-node-find)
    '("i" . org-roam-node-insert)
+   '("r" . org-roam-node-random)
    '("t" . org-roam-tag-add))
   (meow-normal-define-key
    '("0" . meow-expand-0)
