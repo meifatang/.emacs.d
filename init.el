@@ -38,57 +38,38 @@
                  (not (string-prefix-p "." f)))
         (add-folder-to-load-path name)))))
 
-(add-folder-to-load-path (expand-file-name "site-lisp" user-emacs-directory))
+;; (add-folder-to-load-path (expand-file-name "site-lisp" user-emacs-directory))
 (add-folder-to-load-path (expand-file-name "lisp" user-emacs-directory))
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
+(setq gc-cons-threshold 10000000000)
 (setq inhibit-startup-message t)
-
+(setq initial-scratch-message "")
 (setq backup-directory-alist
       `(("." . ,(concat user-emacs-directory "backups"))))
-
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (blink-cursor-mode -1)
-;; (tab-bar-mode -1)
-
 (global-visual-line-mode)
-
 (server-start)
 (midnight-mode)
-
-(setq gc-cons-threshold 10000000000)
 
 (add-hook 'before-save-hook 'org-update-all-dblocks)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 ;; (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 
-(require 'felix-package)
-(require 'felix-theme)
+(require 'felix-package) ;; define which package to install
+(require 'felix-theme) ;; define theme
+(require 'felix-zero) ;; basic third party package config
+(require 'felix-one) ;; all in enhancement
+(require 'felix-auto-save)
+(require 'felix-org) ;; all in org
 
-(require 'felix)
-(require 'felix-ivy)
-(require 'felix-meow)
-(require 'felix-org)
+(require 'ecloud) ;; try to contribute it
 (require 'felix-geoip)
-(require 'felix-wisdom)
-(require 'ecloud)
-
-(require 'sudo-edit)
-(require 'color-rg)
-(require 'thing-edit)
-(require 'password-generator)
 
 (require 'felix-keybindings)
-(require 'felix-auto-save)
 (require 'felix-functions)
-
-(advice-add 'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
-(advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update)
-
-(setq initial-scratch-message
-      (format ";; %s\n\n" (adafruit-wisdom-select)))
 
 (when (file-exists-p (expand-file-name "init-private.el" user-emacs-directory))
   (load-file (expand-file-name "init-private.el" user-emacs-directory)))

@@ -1,18 +1,3 @@
-[submodule "site-lisp/color-rg"]
-	path = site-lisp/color-rg
-	url = https://github.com/manateelazycat/color-rg.git
-[submodule "site-lisp/grammatical-edit"]
-	path = site-lisp/grammatical-edit
-	url = https://github.com/manateelazycat/grammatical-edit
-[submodule "site-lisp/sudo-edit"]
-	path = site-lisp/sudo-edit
-	url = https://github.com/nflath/sudo-edit.git
-[submodule "site-lisp/thing-edit"]
-	path = site-lisp/thing-edit
-	url = https://github.com/manateelazycat/thing-edit
-[submodule "site-lisp/emacs-password-genarator"]
-	path = site-lisp/emacs-password-genarator
-	url = https://github.com/vandrlexay/emacs-password-genarator.git
 [submodule "lisp/ecloud"]
 	path = lisp/ecloud
 	url = https://github.com/meifatang/ecloud.git

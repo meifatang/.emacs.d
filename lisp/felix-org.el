@@ -104,8 +104,44 @@
       (concat "${title:*} "
               (propertize "${tags:10}" 'face 'org-tag)))
 
+(setq org-roam-capture-templates
+      '(("d" "default" plain "%?"
+	 :target (file+head "inbox/%<%Y%m%d%H%M%S>-${slug}.org"
+			    "#+title: ${title}\n")
+	 :unnarrowed t)
+	("i" "inbox" plain "%?"
+	 :target (file+head "inbox/%<%Y%m%d%H%M%S>-${slug}.org"
+			    "#+title: ${title}\n")
+	 :unnarrowed t)
+	("a" "article" plain "%?"
+	 :target (file+head "articles/%<%Y%m%d%H%M%S>-${slug}.org"
+			    "#+title: ${title}\n#+filetags: :article:\n")
+	 :unnarrowed t)
+	("b" "book" plain "%?"
+	 :target (file+head "books/%<%Y%m%d%H%M%S>-${slug}.org"
+			    "#+title: ${title}\n#+filetags: :book:\n")
+	 :unnarrowed t)
+	("p" "project" plain "%?"
+	 :target (file+head "projects/%<%Y%m%d%H%M%S>-${slug}.org"
+			    "#+title: ${title}\n#+filetags: :project:\n")
+	 :unnarrowed t)))
+
+(setq org-roam-dailies-directory "daily/")
+(setq org-roam-dailies-capture-templates
+      '(("d" "default" entry
+         "* %?"
+         :target (file+head "%<%Y-%m-%d>.org"
+                            "#+title: %<%Y-%m-%d>\n"))
+	("g" "gtd" entry
+         "* %?"
+         :target (file+head "%<%Y-%m-%d>.org"
+                            "#+title: %<%Y-%m-%d>\n"))
+	("j" "journal" entry
+         "* %?"
+         :target (file+head "%<%Y-%m-%d>.org"
+                            "#+title: %<%Y-%m-%d>\n"))))
+
 (org-roam-db-autosync-mode)
-;;(add-hook 'org-roam-find-file-hook 'org-roam-buffer)
 
 (require 'org-roam-export) ;; Modify export to suit org-roam
 

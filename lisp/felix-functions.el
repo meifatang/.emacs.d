@@ -1,3 +1,16 @@
+;;; felix-functions
+
+(defun open-with-vscode ()
+  "Open current file with vscode."
+  (interactive)
+  (let ((line (number-to-string (line-number-at-pos)))
+        (column (number-to-string (current-column))))
+    (apply 'call-process "code" nil nil nil (list (concat buffer-file-name ":" line ":" column) "--goto"))))
+
+(defun open-init-file ()
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+
 (defun org-roam-node-insert-immediate (arg &rest args)
   "insert roam note immediate"
   (interactive "P")
@@ -29,3 +42,4 @@
 ;;     (previous-buffer))
 
 (provide 'felix-functions)
+;;; felix-functions ends here

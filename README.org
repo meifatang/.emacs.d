@@ -18,12 +18,19 @@ Load =site-lisp= and =lisp= directory.
 - add-hook(s)
 
 * Package management
+** ELPA
+** MELPA
+** Package list
 
-* felix-init
-* felix-ivy
+* felix-zero
+* felix-one
+
 * felix-org
-* felix-publish
+** org
+** org-roam
+** org-publish
 
 * Keybindings
+* Functions
 
 * Load init-private.el

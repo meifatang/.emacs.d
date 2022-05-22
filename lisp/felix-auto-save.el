@@ -1,3 +1,5 @@
+;;; felix-auto-save
+
 (defgroup auto-save nil
   "Auto save file when emacs idle."
   :group 'auto-save)
@@ -42,4 +44,8 @@
   (interactive)
   (run-with-idle-timer auto-save-idle t #'auto-save-buffers))
 
+(auto-save-enable)
+(setq auto-save-slient t)
+
 (provide 'felix-auto-save)
+;;; felix-auto-save ends here

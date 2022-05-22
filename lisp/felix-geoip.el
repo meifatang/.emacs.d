@@ -1,4 +1,4 @@
-;;; geoip.el --- Locate IP addresses by querying ipinfo.io  -*- lexical-binding: t; -*-
+;;; felix-geoip.el --- Locate IP addresses by querying ipinfo.io  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2017  Nicolas Petton
 
@@ -60,4 +60,4 @@ the host."
       ip)))
 
 (provide 'felix-geoip)
-;;; geoip.el ends here
+;;; felix-geoip.el ends here

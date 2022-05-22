@@ -1,18 +1,11 @@
-;;; felix.el --- -*- lexical-binding: t -*-
+;;; felix-zero.el --- -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
 (require 'exec-path-from-shell)
 (when (memq window-system '(mac ns x))
-  ;;(setq exec-path-from-shell-arguments nil)
+  (setq exec-path-from-shell-arguments nil)
   (exec-path-from-shell-initialize))
-
-(defun felix/open-with-vscode ()
-  "Open current file with vscode."
-  (interactive)
-  (let ((line (number-to-string (line-number-at-pos)))
-        (column (number-to-string (current-column))))
-    (apply 'call-process "code" nil nil nil (list (concat buffer-file-name ":" line ":" column) "--goto"))))
 
 (add-hook 'after-init-hook 'which-key-mode)
 
@@ -22,6 +15,9 @@
 (global-set-key (kbd "C-c C-d") #'helpful-at-point)
 (global-set-key (kbd "C-h F") #'helpful-function)
 (global-set-key (kbd "C-h C") #'helpful-command)
+
+(advice-add 'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
+(advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update)
 
 ;;; smart-hungry-delete
 ;; (smart-hungry-delete-add-default-hooks)
@@ -77,11 +73,7 @@
 ;; (setq rime-librime-root "~/.emacs.d/librime/dist")
 ;; (setq rime-user-data-dir "~/Library/Rime")
 
-;; (require 'felix-auto-save)
-;; (setq auto-save-slient t)
-;; (auto-save-enable)
+;;(require 'ox-moderncv)
 
-(require 'ox-moderncv)
-
-(provide 'felix)
-;;; felix.el ends here
+(provide 'felix-zero)
+;;; felix-zero.el ends here

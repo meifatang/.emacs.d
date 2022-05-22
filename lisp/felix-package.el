@@ -1,31 +1,38 @@
+;;; felix-package
+
 (require 'package)
 
 (setq package-selected-packages '(0x0
-				  amx
+				  ;;amx
 				  ansible
 				  applescript-mode
 				  auctex
 				  auto-dark
-				  bluetooth
-				  bongo
+				  ;;bluetooth
+				  ;;bongo
 				  browse-at-remote
 				  browse-kill-ring
 				  chronos
-				  company
-				  counsel
+				  ;;company
+				  consult
+				  corfu
+				  ;;counsel
 				  csv-mode
 				  docker
 				  docker-cli
 				  docker-compose-mode
 				  dockerfile-mode
-				  easy-hugo
+				  ;;easy-hugo
 				  edbi
+				  eglot
 				  ein
 				  ;;elfeed
+				  elisp-demos
 				  elixir-mode
 				  elpl
 				  elpy
 				  emamux
+				  embark
 				  erlang
 				  esqlite
 				  ess
@@ -45,10 +52,10 @@
 				  hass
 				  helpful
 				  hledger-mode
-				  ido-completing-read+
+				  ;;ido-completing-read+
 				  image+
-				  ivy
-				  ivy-rich
+				  ;;ivy
+				  ;;ivy-rich
 				  jenkins
 				  ;;jenkinsfile-mode
 				  julia-mode
@@ -60,6 +67,7 @@
 				  lsp-mode
 				  lua-mode
 				  magit
+				  marginalia
 				  meow
 				  modus-themes
 				  nginx-mode
@@ -82,6 +90,7 @@
 				  ob-tmux
 				  ob-typescript
 				  ob-uart
+				  orderless
 				  org-bullets
 				  org-contrib
 				  ;;org-modern
@@ -100,7 +109,7 @@
 				  pcache
 				  pdf-tools
 				  pinentry
-				  projectile
+				  ;;projectile
 				  rainbow-delimiters
 				  restart-emacs
 				  restclient
@@ -112,7 +121,7 @@
 				  slime
 				  smart-hungry-delete
 				  ssh
-				  sudo-edit
+				  ;;sudo-edit
 				  system-packages
 				  systemd
 				  telega
@@ -122,7 +131,8 @@
 				  ;;undo-tree
 				  uuidgen
 				  vagrant
-				  valign
+				  ;;valign
+				  vertico
 				  vterm
 				  which-key
 				  whois
@@ -147,3 +157,4 @@
     (package-install package)))
 
 (provide 'felix-package)
+;;; felix-package ends here
