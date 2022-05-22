@@ -8,7 +8,7 @@
 
 ;;(global-set-key (kbd "C-c c") #'org-capture)
 
-(global-set-key (kbd "C-c n r") #'org-roam-node-random)
+(global-set-key (kbd "C-c n d") #'org-roam-dailies-capture-today)
 (global-set-key (kbd "C-c n n") #'org-roam-node-random)
 (global-set-key (kbd "C-c n f") #'org-roam-node-find)
 (global-set-key (kbd "C-c n i") #'org-roam-node-insert)

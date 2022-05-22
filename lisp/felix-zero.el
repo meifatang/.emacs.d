@@ -4,7 +4,7 @@
 
 (require 'exec-path-from-shell)
 (when (memq window-system '(mac ns x))
-  (setq exec-path-from-shell-arguments nil)
+  ;;(setq exec-path-from-shell-arguments nil)
   (exec-path-from-shell-initialize))
 
 (add-hook 'after-init-hook 'which-key-mode)
@@ -46,11 +46,11 @@
       '("~/.emacs.d/snippets"))
 (add-hook 'after-init-hook 'yas-global-mode)
 
-(require 'lsp-mode)
-(add-hook 'sh-mode-hook 'lsp)
-(add-hook 'python-mode 'lsp)
+;; (require 'lsp-mode)
+;; (add-hook 'sh-mode-hook 'lsp)
+;; (add-hook 'python-mode 'lsp)
 
-(add-hook 'after-init-hook 'global-company-mode)
+;; (add-hook 'after-init-hook 'global-company-mode)
 
 (setq leetcode-save-solutions t)
 (setq leetcode-directory "~/leetcode")

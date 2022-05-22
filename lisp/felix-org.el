@@ -45,53 +45,62 @@
 (setq org-log-done 'time)
 
 (setq org-capture-templates
-      '(("g" "Gettting Things Done" entry (file+headline "~/org/life/gtd.org" "Tasks")
+      '(("g" "Gettting Things Done" entry (file+headline "~/org/daily/gtd.org" "Tasks")
          "* TODO %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t))\n  %i  %a\n")
 
-        ("r" "Reading List" entry (file+headline "~/org/life/gtd.org" "Reading")
+        ("r" "Reading List" entry (file+headline "~/org/daily/gtd.org" "Reading")
          "* TODO %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t))\n  %i  %a\n")
-        ("l" "Learn" entry (file+headline "~/org/life/gtd.org" "Learning")
+        ("l" "Learn" entry (file+headline "~/org/daily/gtd.org" "Learning")
          "* TODO %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t))\n  %i  %a\n")
 
-        ("i" "Inbox" entry (file+olp+datetree "~/org/life/inbox.org")
+        ("i" "Inbox" entry (file+olp+datetree "~/org/daily/inbox.org")
          "* %?\n  %i  %a"
          :tree-type week)
-        ("j" "Journal" entry (file+olp+datetree "~/org/life/journal.org")
+        ("j" "Journal" entry (file+olp+datetree "~/org/daily/journal.org")
          "* %?\nEntered on %U\n  %i  %a"
          :tree-type week)
 
         ("h" "Health")
-        ("hd" "Diet" table-line (file+headline "~/org/life/health.org" "Diet")
+        ("hd" "Diet" table-line (file+headline "~/org/daily/health.org" "Diet")
          "| %u | %^{Food} | %^{Type} | %^{Note} |")
-        ("hw" "Weight" table-line (file+headline "~/org/life/health.org" "Weight")
+        ("hw" "Weight" table-line (file+headline "~/org/daily/health.org" "Weight")
          "| %U | %^{Weight} | %^{Note} |")
 
         ("f" "Fitness")
-        ("fr" "Running" table-line (file+headline "~/org/life/health.org" "Fitness" "Running")
+        ("fr" "Running" table-line (file+headline "~/org/daily/health.org" "Fitness" "Running")
          "| %U | %^{Distance} | %^{Avg.Pace} | %^{Note} |")
 
         ("F" "Finance Record" plain
-         (file "~/org/life/Finance/finance.journal")
+         (file "~/org/daily/Finance/finance.journal")
          "%(org-read-date) %^{Description}
     %^{Category|Expenses:Food:Groceries|Expenses:Food:Dining|Expenses:Transport|Expenses:Home|Expenses:Entertainment|Revenues:Salary|Revenues:Misc}    %^{Amount}
     %^{Asset/Liability Account|Assets:Bank:Checking|Assets:Cash|Liabilities:Bank:Credit Card}"
          :empty-lines 1)
 
         ("e" "Entertainment")
-        ("em" "Movie" entry (file+olp+datetree "~/org/life/entertainments.org" "Movie")
+        ("em" "Movie" entry (file+olp+datetree "~/org/daily/entertainments.org" "Movie")
          "* %?\nEntered on $U\n  %i  %a"
          :tree-type month)
-        ("et" "TV Show" entry (file+olp+datetree "~/org/life/entertainments.org" "TV")
+        ("et" "TV Show" entry (file+olp+datetree "~/org/daily/entertainments.org" "TV")
          "* %?\nEntered on $U\n  %i  %a"
          :tree-type month)))
 
-(add-to-list 'org-agenda-files "~/org/life/gtd.org")
+(add-to-list 'org-agenda-files "~/org/daily/gtd.org" "~/org/daily/gtd/")
 
 (setq org-latex-pdf-process '("xelatex -interaction nonstopmode %f" "xelatex -interaction nonstopmode %f"))
+
+(defun org-dblock-write:generate-blog-list (params)
+  (let ((files (directory-files default-directory)))
+    (insert "\n")
+    (dolist (file files)
+      (if (string-match "\\.org$" file)
+	  (insert (concat "* " file "\n"))))))
 
 (setq org-roam-directory "~/org")
 (setq org-roam-v2-ack t)
 (setq org-roam-completion-everywhere t)
+
+(require 'org-roam-export)
 
 (add-to-list 'display-buffer-alist
              '("\\*org-roam\\*"
@@ -105,45 +114,46 @@
               (propertize "${tags:10}" 'face 'org-tag)))
 
 (setq org-roam-capture-templates
-      '(("d" "default" plain "%?"
+      '(("i" "Inbox" plain "%?"
 	 :target (file+head "inbox/%<%Y%m%d%H%M%S>-${slug}.org"
 			    "#+title: ${title}\n")
 	 :unnarrowed t)
-	("i" "inbox" plain "%?"
-	 :target (file+head "inbox/%<%Y%m%d%H%M%S>-${slug}.org"
-			    "#+title: ${title}\n")
-	 :unnarrowed t)
-	("a" "article" plain "%?"
-	 :target (file+head "articles/%<%Y%m%d%H%M%S>-${slug}.org"
+	("a" "Article" plain "%?"
+	 :target (file+head "article/%<%Y%m%d%H%M%S>-${slug}.org"
 			    "#+title: ${title}\n#+filetags: :article:\n")
 	 :unnarrowed t)
-	("b" "book" plain "%?"
-	 :target (file+head "books/%<%Y%m%d%H%M%S>-${slug}.org"
+	("b" "Book" plain "%?"
+	 :target (file+head "book/%<%Y%m%d%H%M%S>-${slug}.org"
 			    "#+title: ${title}\n#+filetags: :book:\n")
 	 :unnarrowed t)
-	("p" "project" plain "%?"
-	 :target (file+head "projects/%<%Y%m%d%H%M%S>-${slug}.org"
+	("p" "Project" plain "%?"
+	 :target (file+head "project/%<%Y%m%d%H%M%S>-${slug}.org"
 			    "#+title: ${title}\n#+filetags: :project:\n")
+	 :unnarrowed t)
+	("z" "Chinese Contents" plain "%?"
+	 :target (file+head "zh/%<%Y%m%d%H%M%S>-${slug}.org"
+			    "#+title: ${title}\n#+filetags: :zh:\n")
 	 :unnarrowed t)))
 
 (setq org-roam-dailies-directory "daily/")
 (setq org-roam-dailies-capture-templates
-      '(("d" "default" entry
+      '(("i" "idea" entry
          "* %?"
-         :target (file+head "%<%Y-%m-%d>.org"
-                            "#+title: %<%Y-%m-%d>\n"))
-	("g" "gtd" entry
-         "* %?"
-         :target (file+head "%<%Y-%m-%d>.org"
-                            "#+title: %<%Y-%m-%d>\n"))
-	("j" "journal" entry
-         "* %?"
-         :target (file+head "%<%Y-%m-%d>.org"
-                            "#+title: %<%Y-%m-%d>\n"))))
+         :target (file+head+olp "idea/%<%Y-%m>.org"
+				"#+title: %<%Y-%m>\n\#+filetags: :idea:\n"
+				("%<%Y-%m-%d>")))
+	("g" "Getting things done" entry
+         "* TODO %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t))\n  %i  %a\n"
+         :target (file+head+olp "gtd/%<%Y-%m>.org"
+				"#+title: %<%Y-%m>\n#+filetags: :gtd:\n"
+				("Tasks" "%<%Y-%m-%d>")))
+	("j" "Journal" entry
+         "* %?\nEntered on %U\n  %i  %a"
+         :target (file+head "journal/%<%Y-%m>.org"
+                            "#+title: %<%Y-%m>\n#+filetags: :journal:\n"
+			    ("%<%Y-%m-%d>")))))
 
 (org-roam-db-autosync-mode)
-
-(require 'org-roam-export) ;; Modify export to suit org-roam
 
 (defun roam-sitemap (title list)
   "Modified sitemap function for Org-roam"
@@ -169,23 +179,18 @@
     (if (= (length filename) 0)
         (format "*%s*" entry)
       (format "{{{timestamp(%s)}}} [[file:%s][%s]]"
-              (format-time-string "%Y.%m"
+	      (format-time-string "%Y.%m"
                                   (org-publish-find-date entry project))
-              entry
-              filename))))
-
-(defun org-dblock-write:generate-blog-list (params)
-  (let ((files (directory-files default-directory)))
-    (insert "\n")
-    (dolist (file files)
-      (if (string-match "\\.org$" file)
-	  (insert (concat "* " file "\n"))))))
+	      entry
+	      filename))))
 
 (setq org-publish-project-alist
       '(("org"
          :base-directory "~/org/"
+	 :recursive t
+	 ;;:exclude "~/org/README.org"
          :publishing-function roam-publication-wrapper
-         :publishing-directory "~/org/public_html"
+         :publishing-directory "~/org/public_html/"
 	 :auto-sitemap t
 	 :sitemap-title "Sitemap"
 	 :sitemap-function roam-sitemap
@@ -219,8 +224,7 @@
          :publishing-directory "~/org/public_html"
          :publishing-function org-publish-attachment)
 
-	("c-c.dev" :components ("org" "org-static"))
-	("tangmeifa.com" :components ("org" "org-static"))))
+	("website" :components ("org" "org-static"))))
 
 (provide 'felix-org)
 ;;; felix-org ends here
