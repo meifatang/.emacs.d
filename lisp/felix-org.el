@@ -121,19 +121,23 @@
 	("a" "Article" plain "%?"
 	 :target (file+head "article/%<%Y%m%d%H%M%S>-${slug}.org"
 			    "#+title: ${title}\n#+filetags: :article:\n")
-	 :unnarrowed t)
+	 :unnarrowed t
+	 :immediate-finish)
 	("b" "Book" plain "%?"
 	 :target (file+head "book/%<%Y%m%d%H%M%S>-${slug}.org"
 			    "#+title: ${title}\n#+filetags: :book:\n")
-	 :unnarrowed t)
+	 :unnarrowed t
+	 :immediate-finish)
 	("p" "Project" plain "%?"
 	 :target (file+head "project/%<%Y%m%d%H%M%S>-${slug}.org"
 			    "#+title: ${title}\n#+filetags: :project:\n")
-	 :unnarrowed t)
+	 :unnarrowed t
+	 :immediate-finish)
 	("z" "Chinese Contents" plain "%?"
 	 :target (file+head "zh/%<%Y%m%d%H%M%S>-${slug}.org"
 			    "#+title: ${title}\n#+filetags: :zh:\n")
-	 :unnarrowed t)))
+	 :unnarrowed t
+	 :immediate-finish)))
 
 (setq org-roam-dailies-directory "daily/")
 (setq org-roam-dailies-capture-templates
