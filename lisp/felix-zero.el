@@ -50,7 +50,7 @@
 ;; (add-hook 'sh-mode-hook 'lsp)
 ;; (add-hook 'python-mode 'lsp)
 
-;; (add-hook 'after-init-hook 'global-company-mode)
+(add-hook 'after-init-hook 'global-company-mode)
 
 (setq leetcode-save-solutions t)
 (setq leetcode-directory "~/leetcode")

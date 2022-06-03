@@ -16,7 +16,7 @@
 (global-set-key (kbd "C-c n t") #'org-roam-tag-add)
 (global-set-key (kbd "C-c n l") #'org-roam-buffer-toggle)
 
-(global-set-key (kbd "C-x /") #'counsel-rg)
+(global-set-key (kbd "C-x /") #'consult-ripgrep)
 
 (provide 'felix-keybindings)
 ;;; felix-keybindings ends here

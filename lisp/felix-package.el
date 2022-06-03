@@ -1,7 +1,6 @@
 ;;; felix-package
 
 (require 'package)
-
 (setq package-selected-packages '(0x0
 				  ;;amx
 				  ansible
@@ -68,7 +67,7 @@
 				  lua-mode
 				  magit
 				  marginalia
-				  meow
+				  ;;meow
 				  modus-themes
 				  nginx-mode
 				  nix-buffer
@@ -102,6 +101,7 @@
 				  org-roam
 				  org-roam-ui
 				  ;;org-superstar
+				  org-transclusion
 				  org-tree-slide
 				  ;;org2ctex
 				  ox-pandoc

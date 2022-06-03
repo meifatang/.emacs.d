@@ -14,7 +14,7 @@
 
 (global-set-key (kbd "C-s") 'consult-line)
 
-;; (global-corfu-mode)
+;;(global-corfu-mode)
 
 (provide 'felix-one)
 ;;; felix-one.el ends here

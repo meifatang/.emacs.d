@@ -51,8 +51,9 @@
 (scroll-bar-mode -1)
 (blink-cursor-mode -1)
 (global-visual-line-mode)
-(server-start)
 (midnight-mode)
+(winner-mode)
+(server-start)
 
 (add-hook 'before-save-hook 'org-update-all-dblocks)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
